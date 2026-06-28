@@ -1,0 +1,3537 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>هَيَّا نُتْقِنُ إِنَّ وَأَخَوَاتِهَا</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Arabic & general aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Cairo', 'Quicksand', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+            background-color: #120324;
+        }
+        .arabic-text {
+            font-family: 'Cairo', sans-serif;
+        }
+        .title-font {
+            font-family: 'Fredoka One', 'Cairo', sans-serif;
+        }
+        /* Custom scrollbar for ranking */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 10px;
+        }
+        /* Shake effect for taking damage */
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-6px, 0); }
+            20%, 40%, 60%, 80% { transform: translate(6px, 0); }
+        }
+        .shake-ui {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        /* Ambient Scenic Animations for Screens Background */
+        @keyframes windSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(1.5deg); }
+        }
+        @keyframes driftLeaf {
+            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(105vh) translateX(120px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes driftPetal {
+            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(105vh) translateX(-150px) rotate(720deg); opacity: 0; }
+        }
+        @keyframes driftSnowflake {
+            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(105vh) translateX(60px) rotate(180deg); opacity: 0; }
+        }
+
+        .scenic-sway {
+            animation: windSway 6s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+    </style>
+</head>
+<body class="relative w-screen h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Sound & Music Control (Floating Top-Right) -->
+    <div class="absolute top-4 right-4 z-50 flex gap-2" dir="ltr">
+        <button id="toggleMusicBtn" class="bg-amber-500 hover:bg-amber-600 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <button id="toggleSFXBtn" class="bg-amber-500 hover:bg-amber-600 text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-volume-high"></i>
+        </button>
+    </div>
+
+    <!-- MAIN MENU LAYER (Jungle Theme) -->
+    <div id="mainMenu" class="absolute inset-0 z-40 flex flex-col items-center justify-center overflow-hidden px-4 text-white text-center">
+        <!-- 2D Parallax Background (Forest theme) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0b3c1b] via-[#052e16] to-[#02140a] -z-10"></div>
+        
+        <!-- Background Sunrays -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-green-400/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+
+        <!-- Giant Ancient Trees Parallax Silhouettes -->
+        <div class="absolute bottom-0 left-[-5%] w-[45%] h-[80%] opacity-30 pointer-events-none scenic-sway">
+            <svg viewBox="0 0 200 400" class="w-full h-full fill-[#041d0e]">
+                <path d="M 40,400 C 60,320 30,220 50,150 C 60,110 90,80 120,40 L 140,50 C 110,90 90,120 80,160 C 60,240 90,330 70,400 Z" />
+                <ellipse cx="120" cy="40" rx="60" ry="35" />
+                <ellipse cx="60" cy="110" rx="50" ry="30" />
+                <ellipse cx="150" cy="100" rx="40" ry="25" />
+            </svg>
+        </div>
+        <div class="absolute bottom-0 right-[-5%] w-[50%] h-[90%] opacity-25 pointer-events-none scenic-sway" style="animation-delay: -3s;">
+            <svg viewBox="0 0 200 400" class="w-full h-full fill-[#021308]">
+                <path d="M 160,400 C 140,320 170,220 150,150 C 140,110 110,80 80,40 L 60,50 C 90,90 110,120 120,160 C 140,240 110,330 130,400 Z" />
+                <circle cx="80" cy="50" r="50" />
+                <circle cx="140" cy="130" r="40" />
+            </svg>
+        </div>
+
+        <!-- Floating Scenic Green Leaves -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" id="forestLeavesContainer"></div>
+        
+        <!-- Logo Container -->
+        <div class="relative mb-6 transform hover:scale-105 transition duration-300">
+            <div class="w-36 h-36 bg-gradient-to-tr from-amber-400 to-yellow-300 rounded-full shadow-2xl flex flex-col items-center justify-center border-4 border-white relative overflow-hidden">
+                <i class="fa-solid fa-crown text-amber-700 text-3xl absolute top-3 animate-bounce"></i>
+                <svg class="w-20 h-20 mt-4" viewBox="0 0 100 100">
+                    <circle cx="20" cy="50" r="12" fill="#8B4513" />
+                    <circle cx="20" cy="50" r="7" fill="#FFD1A4" />
+                    <circle cx="80" cy="50" r="12" fill="#8B4513" />
+                    <circle cx="80" cy="50" r="7" fill="#FFD1A4" />
+                    <circle cx="50" cy="50" r="32" fill="#8B4513" />
+                    <path d="M 30 45 Q 40 35 50 45 Q 60 35 70 45 Q 75 60 50 78 Q 25 60 30 45 Z" fill="#FFD1A4" />
+                    <circle cx="42" cy="48" r="4" fill="#000" />
+                    <circle cx="58" cy="48" r="4" fill="#000" />
+                    <circle cx="34" cy="56" r="3" fill="#FF8888" opacity="0.6" />
+                    <circle cx="66" cy="56" r="3" fill="#FF8888" opacity="0.6" />
+                    <path d="M 45 60 Q 50 65 55 60" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title-font text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-300 to-orange-400 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] mb-1">
+            هَيَّا نُتْقِنُ
+        </h1>
+        <h2 class="arabic-text text-4xl md:text-6xl font-black text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] mb-8">
+            إِنَّ وَأَخَوَاتُهَا
+        </h2>
+
+        <!-- Interactive Buttons Menu -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full px-6 z-10">
+            <button id="mainPlayBtn" onclick="goToScreen('playerNameScreen')" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-extrabold text-lg py-4 px-6 rounded-2xl shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1 transition duration-150 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-circle-play text-xl"></i>
+                <span>ابْدَأِ اللَّعِبَ</span>
+            </button>
+            <button onclick="openTutorial()" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-extrabold text-lg py-4 px-6 rounded-2xl shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1 transition duration-150 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-book-open text-xl"></i>
+                <span>طَرِيقَةُ اللَّعِبِ</span>
+            </button>
+            <button onclick="openRanking()" class="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-white font-extrabold text-lg py-4 px-6 rounded-2xl shadow-lg hover:shadow-yellow-500/30 transform hover:-translate-y-1 transition duration-150 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-trophy text-xl"></i>
+                <span>لَوْحَةُ الصَّدَارَةِ</span>
+            </button>
+            <button onclick="quitGame()" class="bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white font-extrabold text-lg py-4 px-6 rounded-2xl shadow-lg hover:shadow-red-500/30 transform hover:-translate-y-1 transition duration-150 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-right-from-bracket text-xl"></i>
+                <span>خُرُوجٌ</span>
+            </button>
+        </div>
+
+        <p class="text-xs text-indigo-200 mt-8 opacity-70">
+            سِلْسِلَةُ الأَلْعَابِ التَّعْلِيمِيَّةِ لِلُّغَةِ العَرَبِيَّةِ &bull; النُّسْخَةُ التَّعْلِيمِيَّةُ ٢٠٢٦
+        </p>
+    </div>
+
+    <!-- TUTORIAL MODAL -->
+    <div id="tutorialModal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black/85 px-4" dir="rtl">
+        <div class="bg-white text-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl border-4 border-sky-400 max-h-[90vh] overflow-y-auto text-right">
+            <button onclick="closeTutorial()" class="absolute top-4 left-4 text-slate-400 hover:text-rose-500 text-2xl transition">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <h3 class="title-font text-2xl text-sky-600 border-b-2 border-sky-100 pb-3 flex items-center gap-2">
+                <i class="fa-solid fa-book-open"></i> دَلِيلُ وَطَرِيقَةُ اللَّعِبِ
+            </h3>
+            
+            <div class="mt-4 space-y-4 text-sm md:text-base leading-relaxed text-slate-600">
+                <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200">
+                    <h4 class="font-bold text-amber-800 flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-graduation-cap"></i> الهَدَفُ التَّعْلِيمِيُّ:
+                    </h4>
+                    <p>أَتْقِنْ قَوَاعِدَ النَّحْوِ العَرَبِيِّ لِـ <strong>"إِنَّ وَأَخَوَاتِهَا"</strong>. بَعْدَ كُلِّ جَوْلَةٍ، سَتُقَيَّمُ مَعْلُومَاتُكَ بِسُؤَالٍ حَوْلَ قَوَاعِدِ هَذِهِ الحُرُوفِ لِتَعْزِيزِ فَهْمِكَ النَّحْوِيِّ.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-indigo-800 mb-2">🎮 أَزْرَارُ التَّحَكُّمِ:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs md:text-sm">
+                        <div class="bg-indigo-50 p-2.5 rounded-lg flex items-center gap-2 justify-between">
+                            <span> can قَفْزٌ (قَفْزٌ مُضَاعَفٌ)</span>
+                            <span class="bg-indigo-600 text-white font-mono px-2 py-1 rounded shadow">↑ / MOUSE CLICK</span>
+                        </div>
+                        <div class="bg-indigo-50 p-2.5 rounded-lg flex items-center gap-2 justify-between">
+                            <span>الِانْزِلَاقُ (لِلأَسْفَلِ)</span>
+                            <span class="bg-indigo-600 text-white font-mono px-2 py-1 rounded shadow">↓ / KEY S</span>
+                        </div>
+                        <div class="bg-indigo-50 p-2.5 rounded-lg flex items-center gap-2 justify-between col-span-1 md:col-span-2">
+                            <span>الْقُوَّةُ الْحَامِيَةُ (تَفْجِيرُ العَقَبَاتِ)</span>
+                            <span class="bg-purple-600 text-white font-mono px-2 py-1 rounded shadow">SHIFT / KEY P</span>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-indigo-500 mt-1.5">* لِأَجْهِزَةِ الهَوَاتِفِ الذَّكِيَّةِ، تَتَوَفَّرُ أَزْرَارُ تَحَكُّمٍ بَصَرِيَّةٍ سَهْلَةٍ فِي أَسْفَلِ الشَّاشَةِ.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-emerald-800 mb-1">⭐ النِّقَاطُ وَالمَحَاوَلَاتُ:</h4>
+                    <ul class="list-disc pr-5 space-y-1">
+                        <li>اجْمَع| <strong class="text-amber-500">نُجُومَ العِلْمِ</strong> وَ<strong class="text-sky-600">كُتُبَ المَعْرِفَةِ</strong> لِتَحْصِيلِ النِّقَاطِ (+١ نُقْطَةٍ).</li>
+                        <li>تَجَنَّبِ العَقَبَاتِ مِثْلَ الجُذُوعِ، الصُّخُورِ، وَالطُّيُورِ. لَدَيْكَ <strong class="text-rose-500">٦ مَحَاوَلَاتٍ</strong> (قُلُوبٍ).</li>
+                        <li>مُلَاحَظَةٌ: لَا يُوجَدُ حَدٌّ زَمَنِيٌّ لِلْإِجَابَةِ عَنِ الأَسْئِلَةِ كَيْ تُفَكِّرَ بِتَمَهُّلٍ وَتُجِيبَ بِشَكْلٍ صَحِيحٍ!</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <button onclick="closeTutorial()" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2.5 px-8 rounded-xl shadow-md transition duration-150">
+                    حَسَنًا، فَهِمْتُ!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLAYER REGISTRATION SCREEN (Spring Theme) -->
+    <div id="playerNameScreen" class="hidden absolute inset-0 z-40 flex flex-col items-center justify-center overflow-hidden px-4 text-white">
+        <!-- 2D Spring Parallax Scenic Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#5c1341] via-[#3a0528] to-[#1a0112] -z-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-pink-400/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+
+        <!-- Giant blossoms trees silhouettes -->
+        <div class="absolute bottom-0 left-[-10%] w-[55%] h-[85%] opacity-20 pointer-events-none scenic-sway">
+            <svg viewBox="0 0 200 400" class="w-full h-full fill-[#4d0733]">
+                <path d="M 40,400 C 60,320 30,220 50,150 C 60,110 90,80 120,40 L 140,50 Q 80,160 70,400 Z" />
+                <circle cx="120" cy="50" r="45" />
+                <circle cx="60" cy="120" r="35" />
+            </svg>
+        </div>
+        <div class="absolute bottom-0 right-[-10%] w-[55%] h-[95%] opacity-15 pointer-events-none scenic-sway" style="animation-delay: -2s;">
+            <svg viewBox="0 0 200 400" class="w-full h-full fill-[#3a0425]">
+                <path d="M 160,400 C 140,320 170,220 150,150 Q 110,120 130,400 Z" />
+                <circle cx="80" cy="50" r="50" />
+                <circle cx="140" cy="130" r="40" />
+            </svg>
+        </div>
+
+        <!-- Floating Scenic Sakura petals -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" id="springPetalsContainer"></div>
+
+        <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-white/20 max-w-md w-full text-center z-10">
+            <h3 class="title-font text-2xl font-bold text-yellow-300 mb-6">تَسْجِيلُ اللَّاعِبِ</h3>
+            <p class="text-sm text-indigo-100 mb-6">أَدْخِلِ اسْمَكَ لِتَسْجِيلِ رَقْمِكَ القِيَاسِيِّ فِي لَوْحَةِ الصَّدَارَةِ!</p>
+            
+            <div class="relative mb-6">
+                <input type="text" id="playerNameInput" maxlength="15" placeholder="اسْمُكَ (مثال: أحمد)" class="w-full bg-white/20 border-2 border-white/30 rounded-2xl py-4 px-6 text-white placeholder-indigo-200 text-center font-bold text-lg focus:outline-none focus:border-yellow-400 transition" dir="rtl">
+                <i class="fa-solid fa-user absolute right-4 top-1/2 -translate-y-1/2 text-indigo-200 text-xl"></i>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="goToScreen('mainMenu')" class="w-1/3 bg-slate-600 hover:bg-slate-500 py-3.5 rounded-2xl font-bold transition">
+                    رُجُوعٌ
+                </button>
+                <button id="submitNameBtn" onclick="submitPlayerName()" class="w-2/3 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 py-3.5 rounded-2xl font-black text-white shadow-lg transition transform active:scale-95">
+                    التَّالِي <i class="fa-solid fa-arrow-left mr-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHARACTER CUSTOMIZATION SCREEN (Winter Theme) -->
+    <div id="customizationScreen" class="hidden absolute inset-0 z-40 flex flex-col items-center justify-center overflow-hidden px-4 text-white">
+        <!-- 2D Winter Parallax Scenic Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1b2a47] via-[#0d162a] to-[#040814] -z-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-sky-400/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+
+        <!-- Pine trees covered in snow silhouettes -->
+        <div class="absolute bottom-0 left-[-5%] w-[40%] h-[75%] opacity-20 pointer-events-none scenic-sway">
+            <svg viewBox="0 0 100 200" class="w-full h-full fill-[#0d1c33]">
+                <polygon points="50,10 10,100 90,100" />
+                <polygon points="50,60 5,160 95,160" />
+                <rect x="42" y="160" width="16" height="40" />
+            </svg>
+        </div>
+        <div class="absolute bottom-0 right-[-5%] w-[45%] h-[85%] opacity-15 pointer-events-none scenic-sway" style="animation-delay: -1s;">
+            <svg viewBox="0 0 100 200" class="w-full h-full fill-[#071121]">
+                <polygon points="50,5 15,90 85,90" />
+                <polygon points="50,50 8,150 92,150" />
+                <rect x="42" y="150" width="16" height="50" />
+            </svg>
+        </div>
+
+        <!-- Floating Scenic Snowflakes -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" id="winterSnowflakesContainer"></div>
+
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/20 max-w-2xl w-full text-center z-10 max-h-[95vh] overflow-y-auto">
+            <h3 class="title-font text-2xl font-bold text-yellow-300 mb-1">اخْتَرْ شَخْصِيَّتَكَ وَزَيِّنْهَا</h3>
+            <p id="playerGreeting" class="text-sm text-indigo-200 mb-4">مَرْحَبًا، هَلْ أَنْتَ مُسْتَعِدٌّ لِلْمُغَامَرَةِ؟</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <!-- Preview Canvas Side -->
+                <div class="bg-black/20 rounded-2xl p-4 flex flex-col items-center justify-center border border-white/10 relative">
+                    <span class="absolute top-2 right-2 bg-indigo-500/50 text-[10px] uppercase px-2 py-0.5 rounded">مُعَايَنَةٌ</span>
+                    <!-- Miniature preview renderer -->
+                    <canvas id="previewCanvas" width="180" height="180" class="bg-transparent mb-2"></canvas>
+                    <div class="text-xs text-indigo-200 font-semibold uppercase tracking-wider" id="previewSpecs">
+                        Monyet Explorer - Baju Merah
+                    </div>
+                </div>
+
+                <!-- Customization Options Side -->
+                <div class="space-y-4 text-right">
+                    <!-- Animal Selection -->
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 text-right">١. اخْتَرِ الحَيَوَانَ</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="setSpecies('monkey')" id="speciesBtn-monkey" class="bg-amber-500 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow" dir="rtl">
+                                <span class="text-base">🐒</span> <span class="text-[10px]">مُسْتَكْشِفٌ</span>
+                            </button>
+                            <button onclick="setSpecies('rabbit')" id="speciesBtn-rabbit" class="bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow" dir="rtl">
+                                <span class="text-base">🐇</span> <span class="text-[10px]">أَمِيرَةٌ</span>
+                            </button>
+                            <button onclick="setSpecies('penguin')" id="speciesBtn-penguin" class="bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow" dir="rtl">
+                                <span class="text-base">🐧</span> <span class="text-[10px]">مَلِكٌ</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Gender Selection -->
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 text-right">٢. جِنْسُ الشَّخْصِيَّةِ</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="setGender('boy')" id="genderBtn-boy" class="bg-amber-500 text-white font-bold py-2 px-3 rounded-xl border-2 border-transparent transition text-sm flex items-center justify-center gap-1.5 shadow">
+                                👦 <span>ذَكَرٌ</span>
+                            </button>
+                            <button onclick="setGender('girl')" id="genderBtn-girl" class="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-3 rounded-xl border-2 border-transparent transition text-sm flex items-center justify-center gap-1.5 shadow">
+                                👧 <span>أُنْثَى</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Outfit Selection -->
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 text-right">٣. لَوْنُ مَلَابِسِكَ</label>
+                        <div class="flex flex-wrap gap-2 justify-start md:justify-end">
+                            <button onclick="setOutfit('red')" id="outfit-red" class="w-8 h-8 rounded-full bg-red-600 border-2 border-white ring-2 ring-offset-2 ring-red-500 transition duration-150 transform hover:scale-110"></button>
+                            <button onclick="setOutfit('blue')" id="outfit-blue" class="w-8 h-8 rounded-full bg-blue-600 border-2 border-transparent transition duration-150 transform hover:scale-110"></button>
+                            <button onclick="setOutfit('green')" id="outfit-green" class="w-8 h-8 rounded-full bg-green-600 border-2 border-transparent transition duration-150 transform hover:scale-110"></button>
+                            <button onclick="setOutfit('yellow')" id="outfit-yellow" class="w-8 h-8 rounded-full bg-yellow-400 border-2 border-transparent transition duration-150 transform hover:scale-110"></button>
+                            <button onclick="setOutfit('purple')" id="outfit-purple" class="w-8 h-8 rounded-full bg-purple-600 border-2 border-transparent transition duration-150 transform hover:scale-110"></button>
+                        </div>
+                    </div>
+
+                    <!-- Muffler Selection -->
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase tracking-widest mb-2 text-right">٤. لَوْنُ الوِشَاحِ</label>
+                        <div class="flex flex-wrap gap-2 justify-start md:justify-end">
+                            <button onclick="setMuffler('red')" id="muffler-red" class="w-8 h-8 rounded-full bg-rose-500 border-2 border-white transition duration-150 transform hover:scale-110" title="Merah"></button>
+                            <button onclick="setMuffler('blue')" id="muffler-blue" class="w-8 h-8 rounded-full bg-sky-500 border-2 border-transparent transition duration-150 transform hover:scale-110" title="Biru"></button>
+                            <button onclick="setMuffler('green')" id="muffler-green" class="w-8 h-8 rounded-full bg-emerald-500 border-2 border-transparent transition duration-150 transform hover:scale-110" title="Hijau"></button>
+                            <button onclick="setMuffler('black')" id="muffler-black" class="w-8 h-8 rounded-full bg-neutral-900 border-2 border-transparent transition duration-150 transform hover:scale-110" title="Hitam"></button>
+                            <button onclick="setMuffler('rainbow')" id="muffler-rainbow" class="w-8 h-8 rounded-full bg-gradient-to-r from-red-500 via-green-400 to-blue-500 border-2 border-transparent transition duration-150 transform hover:scale-110" title="Pelangi"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex gap-4 mt-6">
+                <button onclick="goToScreen('playerNameScreen')" class="w-1/3 bg-slate-600 hover:bg-slate-500 py-3 rounded-2xl font-bold transition text-sm">
+                    رُجُوعٌ
+                </button>
+                <button onclick="startGame()" class="w-2/3 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 py-3 rounded-2xl font-black text-white shadow-xl hover:shadow-green-500/20 transition transform active:scale-95 text-base">
+                    ابْدَأِ المُغَامَرَةَ <i class="fa-solid fa-gamepad mr-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GAMEPLAY CANVAS LAYER -->
+    <div id="gamePlayScreen" class="hidden absolute inset-0 z-10 w-full h-full bg-black select-none overflow-hidden">
+        <!-- Canvas covers the entire view -->
+        <canvas id="gameCanvas" class="block w-full h-full"></canvas>
+
+        <!-- GAMEPLAY OVERLAY UI -->
+        <!-- Top Info Header -->
+        <div class="absolute top-4 left-4 right-4 z-20 flex justify-between items-center pointer-events-none" dir="rtl">
+            <!-- Right Info Block (Arabic layout): Level and Season Badge -->
+            <div class="flex flex-col gap-1.5 items-start">
+                <div class="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/20">
+                    <span class="w-3.5 h-3.5 rounded-full bg-green-500 animate-ping"></span>
+                    <span id="uiLevelSeason" class="text-white text-xs font-black uppercase tracking-wider">المستوى ١: الغابة</span>
+                </div>
+                <div class="bg-amber-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-md max-w-max uppercase tracking-widest border border-white/10" id="uiFocusTopic">
+                    المَوْضُوعُ الرَّئِيسِيُّ: إِنَّ
+                </div>
+            </div>
+
+            <!-- Left Info Block: Stats -->
+            <div class="flex items-center gap-3" dir="ltr">
+                <!-- Hearts (6 Lives) -->
+                <div class="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-2xl flex flex-col items-center gap-1 border border-white/20">
+                    <span class="text-[9px] font-bold text-indigo-200">٦ مَحَاوَلَاتٍ</span>
+                    <div id="uiHearts" class="flex items-center gap-0.5">
+                        <!-- Hearts loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Scores -->
+                <div class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-2xl flex flex-col items-end border border-white/20" dir="rtl">
+                    <div class="text-[10px] font-bold text-amber-400 leading-none">مَجْمُوعُ النِّقَاطِ</div>
+                    <div id="uiScore" class="text-xl font-extrabold text-white leading-none mt-1">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Indicator Bar -->
+        <div class="absolute bottom-24 left-1/2 -translate-x-1/2 w-2/3 max-w-md bg-black/50 backdrop-blur-md h-3 rounded-full border border-white/10 overflow-hidden pointer-events-none">
+            <div id="uiProgressBar" class="h-full bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+
+        <!-- Mobile Touch Controls Layout -->
+        <!-- Jump Button (Left Side) -->
+        <button id="ctrlJumpBtn" class="absolute bottom-4 left-4 z-30 bg-amber-500/85 active:bg-amber-600/90 text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl flex flex-col items-center justify-center border-4 border-white/30 transform active:scale-90 transition">
+            <i class="fa-solid fa-circle-chevron-up text-2xl md:text-3xl"></i>
+            <span class="text-[9px] font-black uppercase mt-1">قَفْزٌ</span>
+        </button>
+
+        <!-- Dynamic Special Power Button (Center-Bottom) -->
+        <button id="ctrlPowerBtn" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-purple-600 active:bg-purple-700 text-white px-5 py-3 rounded-full shadow-2xl flex items-center justify-center gap-2 border-4 border-white/30 transform active:scale-90 transition">
+            <i class="fa-solid fa-bolt text-lg animate-bounce"></i>
+            <span class="text-xs font-black uppercase tracking-wider" id="uiPowerText">الْقُوَّةُ (٣)</span>
+        </button>
+
+        <!-- Slide Button (Right Side) -->
+        <button id="ctrlSlideBtn" class="absolute bottom-4 right-4 z-30 bg-sky-500/80 active:bg-sky-600/90 text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl flex flex-col items-center justify-center border-4 border-white/30 transform active:scale-90 transition">
+            <i class="fa-solid fa-circle-chevron-down text-2xl md:text-3xl"></i>
+            <span class="text-[9px] font-black uppercase mt-1">انْزِلَاقٌ</span>
+        </button>
+    </div>
+
+    <!-- QUIZ MODAL LAYER -->
+    <div id="quizScreen" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black/95 px-4" dir="rtl">
+        <div class="bg-gradient-to-br from-indigo-950 via-purple-900 to-slate-900 text-white rounded-3xl max-w-xl w-full p-6 relative shadow-2xl border-4 border-yellow-400 max-h-[95vh] overflow-y-auto text-right">
+            
+            <div class="flex justify-between items-center mb-4 border-b border-indigo-500/30 pb-3">
+                <span id="quizLevelBadge" class="bg-amber-500 text-slate-950 font-black px-3.5 py-1 rounded-full text-xs uppercase tracking-wider">اكْتَمَلَ المُسْتَوَى ١!</span>
+                <span class="text-xs text-indigo-200">فَكِّرْ بِهُدُوءٍ &bullet; لَا يُوجَدُ حَدٌّ زَمَنِيٌّ</span>
+            </div>
+
+            <!-- Quiz Content Container -->
+            <div id="quizContent">
+                <div class="text-center mb-6">
+                    <h4 class="title-font text-lg text-yellow-300 font-bold mb-1">سُؤَالُ تَقْيِيمِ مَوْضُوعِ:</h4>
+                    <div id="quizTopicName" class="arabic-text text-3xl font-black text-white drop-shadow">إِنَّ</div>
+                </div>
+
+                <div class="bg-white/10 p-5 rounded-2xl border border-white/10 mb-6 text-center">
+                    <p id="quizQuestionMalay" class="text-xs md:text-sm text-indigo-200 font-medium mb-2">حَدِّدِ الوَظِيفَةَ النَّحْوِيَّةَ الصَّحِيحَةَ لِلْحَرْفِ الآتِي:</p>
+                    <p id="quizQuestionArabic" class="arabic-text text-xl md:text-2xl font-black text-white leading-relaxed text-right rtl">
+                        ...
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3" id="quizAnswersGrid">
+                    <!-- Buttons will be dynamically inserted here -->
+                </div>
+
+                <div id="quizFeedback" class="hidden mt-4 p-4 rounded-2xl text-center font-bold text-sm bg-slate-900/40 border border-indigo-500/30 flex flex-col items-center gap-3">
+                    <div id="quizFeedbackText" class="text-green-300">إِجَابَةٌ صَحِيحَةٌ! +١٠ نِقَاطٍ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RANKING SCREEN OVERLAY -->
+    <div id="rankingScreen" class="hidden absolute inset-0 z-40 flex flex-col items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 px-4 text-white" dir="rtl">
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/20 max-w-md w-full">
+            <h3 class="title-font text-3xl font-bold text-yellow-300 text-center mb-2 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-trophy"></i> لَوْحَةُ الصَّدَارَةِ
+            </h3>
+            <p class="text-center text-xs text-indigo-200 mb-6 uppercase tracking-wider">تَرْتِيبُ النِّقَاطِ الأَعْلَى حَالِيًّا</p>
+
+            <div class="space-y-2.5 max-h-[50vh] overflow-y-auto pr-1" id="rankingItemsContainer">
+                <!-- Loaded Dynamically via JS -->
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="goToScreen('mainMenu')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-xl shadow-md transition w-full">
+                    العَوْدَةُ إِلَى القَائِمَةِ الرَّئِيسِيَّةِ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL GAME OVER / VICTORY OVERLAY SCREEN -->
+    <div id="gameOverScreen" class="hidden absolute inset-0 z-40 flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-purple-950 to-indigo-950 px-4 text-white overflow-y-auto py-8" dir="rtl">
+        <div class="bg-white/5 backdrop-blur-md p-8 rounded-3xl shadow-2xl border-4 border-yellow-400 max-w-xl w-full text-center relative">
+            
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center border-4 border-white shadow-2xl">
+                <i id="finalBadgeIcon" class="fa-solid fa-trophy text-amber-800 text-4xl animate-bounce"></i>
+            </div>
+
+            <h3 id="finalTitle" class="title-font text-2xl md:text-3xl font-black text-yellow-300 mt-10 mb-2">
+                تَهَانِينَا وَأَلْفُ مَبْرُوكٍ!
+            </h3>
+            <p id="finalSubtitle" class="text-indigo-200 text-sm mb-6 max-w-sm mx-auto">
+                لَقَدْ نَجَحْتَ فِي إِتْقَانِ قَوَاعِدِ اللُّغَةِ العَرَبِيَّةِ لِـ <strong>إِنَّ وَأَخَوَاتِهَا</strong> بِجَدَارَةٍ!
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mb-6" dir="ltr">
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/10">
+                    <span class="text-[10px] text-indigo-300 uppercase tracking-widest font-bold">مَجْمُوعُ النِّقَاطِ</span>
+                    <p id="finalScoreText" class="text-3xl font-extrabold text-white mt-1">125</p>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/10">
+                    <span class="text-[10px] text-indigo-300 uppercase tracking-widest font-bold">وَقْتُ اللَّعِبِ</span>
+                    <p id="finalTimeText" class="text-3xl font-extrabold text-white mt-1">2m 14s</p>
+                </div>
+            </div>
+
+            <div class="bg-black/40 rounded-2xl p-4 border border-white/5 mb-6 text-right">
+                <div class="text-xs font-bold text-yellow-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+                    <i class="fa-solid fa-ranking-star"></i> تَصْنِيفُكَ الأَخِيرُ
+                </div>
+                <div class="space-y-1.5" id="finalLocalRankingContainer">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="restartGame()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 py-3 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider shadow-lg transition">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> إِعَادَةُ اللَّعِبِ
+                </button>
+                <button onclick="goToScreen('customizationScreen')" class="bg-indigo-600 hover:bg-indigo-500 py-3 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider shadow-lg transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> تَغْيِيرُ الشَّخْصِيَّةِ
+                </button>
+                <button onclick="openRanking()" class="bg-amber-500 hover:bg-amber-400 py-3 rounded-xl font-black text-xs md:text-sm uppercase tracking-wider shadow-lg transition col-span-2">
+                    <i class="fa-solid fa-list-ol mr-1"></i> عَرْضُ جَمِيعِ التَّصْنِيفَاتِ
+                </button>
+                <button onclick="quitGame()" class="bg-rose-600 hover:bg-rose-500 py-2.5 rounded-xl font-bold text-xs md:text-sm uppercase tracking-wider transition col-span-2">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> خُرُوجٌ
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT GAME LOGIC -->
+    <script>
+        let quizTimerInterval = null; 
+        let explosionRings = [];
+        let debrisParticles = [];
+
+        // Draw Rounded Rect securely on any older browser versions without crashing
+        function drawSafeRoundRect(context, x, y, width, height, radius) {
+            let r = { tl: 5, tr: 5, br: 5, bl: 5 };
+            if (typeof radius === 'number') {
+                r = { tl: radius, tr: radius, br: radius, bl: radius };
+            } else if (Array.isArray(radius)) {
+                r = { tl: radius[0] !== undefined ? radius[0] : 0, 
+                      tr: radius[1] !== undefined ? radius[1] : 0, 
+                      br: radius[2] !== undefined ? radius[2] : 0, 
+                      bl: radius[3] !== undefined ? radius[3] : 0 };
+            }
+            context.beginPath();
+            context.moveTo(x + r.tl, y);
+            context.lineTo(x + width - r.tr, y);
+            context.quadraticCurveTo(x + width, y, x + width, y + r.tr);
+            context.lineTo(x + width, y + height - r.br);
+            context.quadraticCurveTo(x + width, y + height, x + width - r.br, y + height);
+            context.lineTo(x + r.bl, y + height);
+            context.quadraticCurveTo(x, y + height, x, y + height - r.bl);
+            context.lineTo(x, y + r.tl);
+            context.quadraticCurveTo(x, y, x + r.tl, y);
+            context.closePath();
+            context.fill();
+        }
+
+        // Procedural Maple Leaf Drawing helper for Level 2 (🍁)
+        function drawMapleLeaf(ctx, x, y, size, angle, color) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            
+            // Stem
+            ctx.moveTo(0, size * 0.8);
+            ctx.lineTo(0, size * 0.4);
+            
+            // Left bottom lobe
+            ctx.lineTo(-size * 0.4, size * 0.4);
+            ctx.lineTo(-size * 0.3, size * 0.2);
+            ctx.lineTo(-size * 0.6, size * 0.1);
+            ctx.lineTo(-size * 0.4, -size * 0.1);
+            
+            // Left main lobe
+            ctx.lineTo(-size * 0.8, -size * 0.2);
+            ctx.lineTo(-size * 0.5, -size * 0.4);
+            ctx.lineTo(-size * 0.6, -size * 0.6);
+            ctx.lineTo(-size * 0.3, -size * 0.5);
+            
+            // Center main tip
+            ctx.lineTo(0, -size);
+            
+            // Right main lobe
+            ctx.lineTo(size * 0.3, -size * 0.5);
+            ctx.lineTo(size * 0.6, -size * 0.6);
+            ctx.lineTo(size * 0.5, -size * 0.4);
+            ctx.lineTo(size * 0.8, -size * 0.2);
+            
+            // Right bottom lobe
+            ctx.lineTo(size * 0.4, -size * 0.1);
+            ctx.lineTo(size * 0.6, size * 0.1);
+            ctx.lineTo(size * 0.3, size * 0.2);
+            ctx.lineTo(size * 0.4, size * 0.4);
+            
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // ----------------- AUDIO SYSTEM (Web Audio API Synthesizer) -----------------
+        const AudioSys = {
+            ctx: null,
+            musicEnabled: true,
+            sfxEnabled: true,
+            bgInterval: null,
+
+            init() {
+                if (!this.ctx) {
+                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            },
+
+            playTone(freq, type, duration, vol, slideToFreq = null) {
+                if (!this.sfxEnabled) return;
+                this.init();
+                const ctx = this.ctx;
+                
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                if (slideToFreq) {
+                    osc.frequency.exponentialRampToValueAtTime(slideToFreq, ctx.currentTime + duration);
+                }
+
+                gain.gain.setValueAtTime(vol * 3.5, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            },
+
+            playJump() {
+                this.playTone(180, 'sine', 0.2, 0.25, 450);
+            },
+
+            playSlide() {
+                this.playTone(350, 'triangle', 0.15, 0.15, 120);
+            },
+
+            playCollect() {
+                this.playTone(600, 'sine', 0.08, 0.2, 1200);
+            },
+
+            playHurt() {
+                this.playTone(150, 'sawtooth', 0.35, 0.2, 40);
+            },
+
+            playExplosion() {
+                this.playTone(120, 'sawtooth', 0.5, 0.4, 30);
+                setTimeout(() => this.playTone(70, 'sawtooth', 0.4, 0.35, 10), 100);
+            },
+
+            playSuccess() {
+                this.playTone(400, 'triangle', 0.15, 0.3);
+                setTimeout(() => this.playTone(600, 'triangle', 0.15, 0.3), 150);
+                setTimeout(() => this.playTone(800, 'triangle', 0.3, 0.4), 300);
+            },
+
+            playFail() {
+                this.playTone(200, 'sawtooth', 0.2, 0.4, 80);
+            },
+
+            speakSohih() {
+                if (!this.sfxEnabled) return;
+                this.playTone(400, 'triangle', 0.15, 0.3);
+                setTimeout(() => this.playTone(600, 'triangle', 0.15, 0.3), 150);
+                setTimeout(() => this.playTone(900, 'triangle', 0.3, 0.3), 300);
+
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance("صَحِيحٌ");
+                    utterance.lang = "ar-SA"; 
+                    utterance.rate = 1.0;
+                    utterance.volume = 1.0;
+                    window.speechSynthesis.speak(utterance);
+                }
+            },
+
+            speakKhoto() {
+                if (!this.sfxEnabled) return;
+                this.playTone(180, 'sawtooth', 0.15, 0.3, 100);
+                setTimeout(() => this.playTone(180, 'sawtooth', 0.15, 0.3, 100), 200);
+
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance("خَاطِئٌ");
+                    utterance.lang = "ar-SA"; 
+                    utterance.rate = 1.0;
+                    utterance.volume = 1.0;
+                    window.speechSynthesis.speak(utterance);
+                }
+            },
+
+            startMusic() {
+                if (this.bgInterval) clearInterval(this.bgInterval);
+                if (!this.musicEnabled) return;
+                
+                const notes = [293.66, 329.63, 392.00, 440.00, 523.25, 587.33]; 
+                let index = 0;
+
+                this.bgInterval = setInterval(() => {
+                    if (!this.musicEnabled) return;
+                    this.init();
+                    
+                    const tone = notes[index % notes.length];
+                    
+                    this.playTone(tone / 2, 'triangle', 0.35, 0.22);
+                    
+                    if (index % 2 === 0) {
+                        this.playTone(notes[(index + 3) % notes.length], 'sine', 0.18, 0.12);
+                    }
+                    
+                    index++;
+                }, 350);
+            },
+
+            stopMusic() {
+                if (this.bgInterval) {
+                    clearInterval(this.bgInterval);
+                    this.bgInterval = null;
+                }
+            }
+        };
+
+        // Connect Buttons to Music Controls
+        document.getElementById('toggleMusicBtn').addEventListener('click', () => {
+            AudioSys.musicEnabled = !AudioSys.musicEnabled;
+            const icon = document.getElementById('toggleMusicBtn').querySelector('i');
+            if (AudioSys.musicEnabled) {
+                icon.className = 'fa-solid fa-music';
+                AudioSys.startMusic();
+            } else {
+                icon.className = 'fa-solid fa-music-slash';
+                AudioSys.stopMusic();
+            }
+        });
+
+        document.getElementById('toggleSFXBtn').addEventListener('click', () => {
+            AudioSys.sfxEnabled = !AudioSys.sfxEnabled;
+            const icon = document.getElementById('toggleSFXBtn').querySelector('i');
+            if (AudioSys.sfxEnabled) {
+                icon.className = 'fa-solid fa-volume-high';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark';
+            }
+        });
+
+        // ----------------- GAME CONFIG & STATE -----------------
+        const CONFIG = {
+            gravity: 0.6,
+            monkeyBaseWidth: 65,  
+            monkeyBaseHeight: 65, 
+            initialSpeed: 5.5,
+            speedIncrement: 0.35,
+            levelDuration: 10000, 
+        };
+
+        let GameState = {
+            player: {
+                name: 'أحمد',
+                species: 'monkey', 
+                gender: 'boy', 
+                outfitColor: 'red', 
+                mufflerColor: 'red', 
+            },
+            currentScreen: 'mainMenu',
+            score: 0,
+            lives: 6, 
+            powerCharges: 3, // 3 Special power charges total from levels 1 to 5
+            distanceTraveled: 0,
+            currentLevel: 1, 
+            isPlaying: false,
+            timeElapsed: 0, 
+            gameTimerInterval: null,
+            wrongAnswersCount: 0,
+            perfectBonusCount: true, 
+        };
+
+        let HighScores = [
+            { name: "أيوني", score: 98, date: "07/06/2026" },
+            { name: "إنشراح", score: 85, date: "07/06/2026" },
+            { name: "ميزا", score: 72, date: "07/06/2026" },
+            { name: "عين", score: 60, date: "07/06/2026" }
+        ];
+
+        if (localStorage.getItem('haya_ranking')) {
+            try {
+                HighScores = JSON.parse(localStorage.getItem('haya_ranking'));
+            } catch(e) {}
+        }
+
+        // ----------------- SEASONS CONFIG & VISUAL ASSETS (ARABIC) -----------------
+        const Seasons = {
+            1: {
+                name: "الْغَابَةُ الْخَضْرَاءُ 🌳",
+                focus: "إِنَّ",
+                skyGrad: ["#4ade80", "#22c55e", "#15803d"], 
+                groundColor: "#166534",
+                treeColor: "#14532d",
+                ambientColor: "rgba(74, 222, 128, 0.12)",
+                seasonType: "jungle"
+            },
+            2: {
+                name: "الْغُرُوبُ السَّاحِرُ 🌅",
+                focus: "أَنَّ",
+                skyGrad: ["#fdba74", "#f97316", "#7c2d12"], 
+                groundColor: "#c2410c",
+                treeColor: "#9a3412",
+                ambientColor: "rgba(253, 186, 116, 0.15)",
+                seasonType: "sunset"
+            },
+            3: {
+                name: "مَوْسِمُ الأَمْطَارِ 🌧️",
+                focus: "كَأَنَّ",
+                skyGrad: ["#1e293b", "#0f172a", "#020617"], 
+                groundColor: "#020617",
+                treeColor: "#091e15",
+                ambientColor: "rgba(15, 23, 42, 0.45)",
+                seasonType: "rain"
+            },
+            4: {
+                name: "مَوْسِمُ الثُّلُوجِ ❄️",
+                focus: "لَكِنَّ",
+                skyGrad: ["#cbd5e1", "#94a3b8", "#1e3a8a"], 
+                groundColor: "#f1f5f9",
+                treeColor: "#475569",
+                ambientColor: "rgba(255, 255, 255, 0.25)",
+                seasonType: "winter"
+            },
+            5: {
+                name: "مَوْسِمُ الرَّبِيعِ 🌸",
+                focus: "لَيْتَ & لَعَلَّ",
+                skyGrad: ["#f472b6", "#db2777", "#4c0519"], 
+                groundColor: "#be185d",
+                treeColor: "#9d174d",
+                ambientColor: "rgba(244, 114, 182, 0.15)",
+                seasonType: "spring"
+            }
+        };
+
+        // ----------------- EDUCATIONAL QUIZ DATABASE (ACADEMIC ARABIC) -----------------
+        const QuizQuestions = {
+            1: {
+                topic: "إِنَّ (للتأكيد)",
+                malayPrompt: "حَدِّدِ الوَظِيفَةَ النَّحْوِيَّةَ الصَّحِيحَةَ لِلْحَرْفِ «إِنَّ»:",
+                arabicText: "إِنَّ تَعْمَلُ عَلَى:",
+                answers: [
+                    { text: "نَصْبِ الِاسْمِ وَرَفْعِ الْخَبَرِ", correct: true },
+                    { text: "رَفْعِ الِاسْمِ وَنَصْبِ الْخَبَرِ", correct: false },
+                    { text: "جَرِّ الِاسْمِ وَجَزْمِ الْخَبَرِ", correct: false },
+                    { text: "لَا تُحْدِثُ أَيَّ تَغْيِيرٍ إِعْرَابِيٍّ", correct: false }
+                ]
+            },
+            2: {
+                topic: "أَنَّ (للتوكيد والمصدريّة)",
+                malayPrompt: "اخْتَرِ الجُمْلَةَ الَّتِي تَسْتَخْدِمُ «أَنَّ» بِالضَّبْطِ النَّحْوِيِّ الصَّحِيحِ:",
+                arabicText: "عَلِمْتُ أَنَّ الْعِلْمَ ... نَافِعٌ",
+                answers: [
+                    { text: "الْعِلْمَ (منصوب بالفتحة)", correct: true },
+                    { text: "الْعِلْمُ (مرفوع بالضمة)", correct: false },
+                    { text: "الْعِلْمِ (مجرور بالكسرة)", correct: false },
+                    { text: "الْعِلْمْ (مجزوم بالسكون)", correct: false }
+                ]
+            },
+            3: {
+                topic: "كَأَنَّ (للتشبيه)",
+                malayPrompt: "مَا المَعْنَى الَّذِي يُفِيدُهُ الحَرْفُ المُشَبَّهُ بِالفِعْلِ «كَأَنَّ»؟",
+                arabicText: "كَأَنَّ الْجُنْدِيَّ أَسَدٌ. مَعْنَى «كَأَنَّ» هُوَ:",
+                answers: [
+                    { text: "التَّشْبِيهُ", correct: true },
+                    { text: "التَّأْكِيدُ", correct: false },
+                    { text: "التَّمَنِّي", correct: false },
+                    { text: "الِاسْتِدْرَاكُ", correct: false }
+                ]
+            },
+            4: {
+                topic: "لَكِنَّ (للاستدراك)",
+                malayPrompt: "أَكْمِلِ الجُمْلَةَ أَدْنَاهُ بِـ (اسْمِ لَكِنَّ) المُنَاسِبِ ضَبْطًا:",
+                arabicText: "الْبَيْتُ جَمِيلٌ لَكِنَّ ... صَغِيرَةٌ",
+                answers: [
+                    { text: "الْغُرْفَةَ (بالفتحة)", correct: true },
+                    { text: "الْغُرْفَةُ (بالضمة)", correct: false },
+                    { text: "الْغُرْفَةِ (بالكسرة)", correct: false },
+                    { text: "الْغُرْفَتَانِ (مرفوع بالألف)", correct: false }
+                ]
+            },
+            5: {
+                topic: "لَيْتَ (للتمني) وَلَعَلَّ (للترجي)",
+                malayPrompt: "مَيِّزِ الفَرْقَ الدَّلَالِيَّ بَيْنَ الحَرْفَيْنِ «لَيْتَ» وَ«لَعَلَّ»:",
+                arabicText: "لَيْتَ لِلمُسْتَحِيلِ وَلَعَلَّ لِلْمُمْكِنِ",
+                answers: [
+                    { text: "صَحِيحٌ (لَيْتَ لِلتَّمَنِّي الصَّعْبِ، وَلَعَلَّ لِلتَّرَجِّي المُمْكِنِ)", correct: true },
+                    { text: "خَطَأٌ (كِلَاهُمَا يُفِيدَانِ نَفْسَ المَعْنَى تَمَامًا)", correct: false },
+                    { text: "خَطَأٌ (لَيْتَ لِلْمُمْكِنِ، وَلَعَلَّ لِلْمُسْتَحِيلِ)", correct: false },
+                    { text: "خَطَأٌ (لَا عَلَاقَةَ لَهُمَا بِالرَّجَاءِ أَوِ التَّمَنِّي)", correct: false }
+                ]
+            }
+        };
+
+        const OUTFIT_COLORS = {
+            red: '#e11d48',
+            blue: '#2563eb',
+            green: '#16a34a',
+            yellow: '#eab308',
+            purple: '#9333ea'
+        };
+
+        const MUFFLER_COLORS = {
+            red: '#f43f5e',
+            blue: '#0ea5e9',
+            green: '#10b981',
+            black: '#171717',
+            rainbow: 'rainbow'
+        };
+
+        const outfitArabic = {
+            red: "الأَحْمَرَ",
+            blue: "الأَزْرَقَ",
+            green: "الأَخْضَرَ",
+            yellow: "الأَصْفَرَ",
+            purple: "البَنَفْسَجِيَّ"
+        };
+
+        // ----------------- DYNAMIC PROCEDURAL 2D SKINS DRAWER (SUPER CHUBBY EDITION) -----------------
+        function drawCharacterSkin(context, x, y, species, gender, outfitColor, mufflerColor, isSliding, runFrame, isGrounded, vy) {
+            context.save();
+            
+            context.strokeStyle = '#1a0429'; 
+            context.lineWidth = 3;
+            
+            const outfit = OUTFIT_COLORS[outfitColor] || '#e11d48';
+            let muffler = MUFFLER_COLORS[mufflerColor] || '#f43f5e';
+            if (mufflerColor === 'rainbow') {
+                const grad = context.createLinearGradient(x - 25, 0, x + 25, 0);
+                grad.addColorStop(0, '#f43f5e');
+                grad.addColorStop(0.2, '#f59e0b');
+                grad.addColorStop(0.4, '#10b981');
+                grad.addColorStop(0.6, '#3b82f6');
+                grad.addColorStop(0.8, '#8b5cf6');
+                grad.addColorStop(1, '#ec4899');
+                muffler = grad;
+            }
+
+            // Squash and Stretch calculations for organic bouncing feel
+            let stretchX = 1;
+            let stretchY = 1;
+            if (!isGrounded) {
+                if (vy < 0) {
+                    stretchY = 1.18; 
+                    stretchX = 0.85; 
+                } else {
+                    stretchY = 1.05; 
+                    stretchX = 0.95;
+                }
+            } else if (isSliding) {
+                stretchY = 0.65; 
+                stretchX = 1.35;
+            } else {
+                const waddleFactor = Math.sin(runFrame * 2) * 0.05;
+                stretchY = 1 + waddleFactor;
+                stretchX = 1 - waddleFactor;
+            }
+
+            context.translate(x, y + 25);
+            context.scale(stretchX, stretchY);
+            context.translate(-x, -y - 25);
+
+            const isBlinking = (Math.floor(Date.now() / 2500) % 10 === 0 && Date.now() % 2500 < 120);
+            const tiltY = !isGrounded ? Math.min(Math.max(vy * 0.6, -6), 6) : 0;
+
+            if (species === 'penguin') {
+                // --- PENGUIN KING (SUPER CHUBBY & ROUNDED) ---
+                const bodyY = isSliding ? y + 10 : y + 18;
+
+                // Back Arm/Wing
+                context.fillStyle = '#ff7597';
+                context.save();
+                context.translate(x - 18, bodyY + 4);
+                let wingAngle = Math.PI / 4;
+                if (!isGrounded) {
+                    wingAngle = -Math.PI / 6;
+                } else if (isSliding) {
+                    wingAngle = Math.PI / 2;
+                } else {
+                    wingAngle += Math.sin(runFrame * 1.5) * 0.5;
+                }
+                context.rotate(wingAngle);
+                context.beginPath();
+                context.ellipse(0, 8, 4.5, 12, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+                context.restore();
+
+                // Royal Cape drape back
+                context.fillStyle = outfit;
+                context.save();
+                context.translate(x, bodyY + 4);
+                context.beginPath();
+                context.moveTo(-16, -2);
+                context.quadraticCurveTo(-35, 12, -42, 32);
+                context.lineTo(-12, 28);
+                context.closePath();
+                context.fill();
+                context.stroke();
+                context.restore();
+
+                // Orange Feet
+                context.fillStyle = '#f97316';
+                context.save();
+                context.translate(x, y + 20);
+                let wLeft = Math.sin(runFrame) * 4;
+                let wRight = -Math.sin(runFrame) * 4;
+                if (isSliding) { wLeft = wRight = 0; }
+                context.beginPath();
+                context.ellipse(-12 + wLeft, 12, 8, 4.5, 0, 0, Math.PI * 2);
+                context.ellipse(12 + wRight, 12, 8, 4.5, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+                context.restore();
+
+                // Chubby Penguin Body (Main Pink base)
+                context.fillStyle = '#ff7597';
+                context.beginPath();
+                context.ellipse(x, bodyY + 6, 21, 23, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // White Round Belly
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.ellipse(x, bodyY + 9, 15, 17, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Royal King Coat drape overlay (front)
+                context.fillStyle = outfit;
+                context.beginPath();
+                context.ellipse(x, bodyY + 12, 14, 11, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // White fur lining with gold studs
+                context.fillStyle = '#ffffff';
+                context.fillRect(x - 3, bodyY + 3, 6, 18);
+                context.fillStyle = '#ffd700'; 
+                context.beginPath();
+                context.arc(x, bodyY + 7, 2.5, 0, Math.PI * 2);
+                context.arc(x, bodyY + 14, 2.5, 0, Math.PI * 2);
+                context.fill();
+
+                // Front Arm/Wing
+                context.fillStyle = '#ff7597';
+                context.save();
+                context.translate(x + 18, bodyY + 4);
+                let wingFrontAngle = -Math.PI / 4;
+                if (!isGrounded) {
+                    wingFrontAngle = Math.PI / 6;
+                } else if (isSliding) {
+                    wingFrontAngle = -Math.PI / 2;
+                } else {
+                    wingFrontAngle -= Math.sin(runFrame * 1.5) * 0.5;
+                }
+                context.rotate(wingFrontAngle);
+                context.beginPath();
+                context.ellipse(0, 8, 4.5, 12, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+                context.restore();
+
+                // Round Chubby Head
+                context.fillStyle = '#ff7597';
+                context.beginPath();
+                context.arc(x, y - 8, 22, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // White Heart-Shaped Face Mask
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.arc(x - 8, y - 8 + tiltY, 9, 0, Math.PI * 2);
+                context.arc(x + 8, y - 8 + tiltY, 9, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Eyes with sparkles
+                context.fillStyle = '#000000';
+                if (isBlinking) {
+                    context.beginPath(); context.arc(x - 7, y - 10 + tiltY, 5, Math.PI, 0, false); context.stroke();
+                    context.beginPath(); context.arc(x + 7, y - 10 + tiltY, 5, Math.PI, 0, false); context.stroke();
+                } else {
+                    context.beginPath(); context.arc(x - 7, y - 10 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                    context.beginPath(); context.arc(x + 7, y - 10 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                    context.fillStyle = '#ffffff';
+                    context.beginPath(); context.arc(x - 8, y - 11 + tiltY, 1, 0, Math.PI * 2); context.fill();
+                    context.beginPath(); context.arc(x + 6, y - 11 + tiltY, 1, 0, Math.PI * 2); context.fill();
+                }
+
+                // Super Chubby Radial Blush
+                const bLeft = context.createRadialGradient(x - 12, y - 5 + tiltY, 0, x - 12, y - 5 + tiltY, 6.5);
+                bLeft.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bLeft.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bLeft;
+                context.beginPath(); context.arc(x - 12, y - 5 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                const bRight = context.createRadialGradient(x + 12, y - 5 + tiltY, 0, x + 12, y - 5 + tiltY, 6.5);
+                bRight.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bRight.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bRight;
+                context.beginPath(); context.arc(x + 12, y - 5 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                // Yellow triangular beak
+                context.fillStyle = '#ff9f00';
+                context.beginPath();
+                context.moveTo(x - 4, y - 6 + tiltY);
+                context.lineTo(x + 4, y - 6 + tiltY);
+                context.lineTo(x, y + 1 + tiltY);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+                // King Crown
+                context.fillStyle = '#ffd700';
+                context.save();
+                context.translate(x, y - 24 + tiltY);
+                context.rotate(0.08); 
+                context.beginPath();
+                context.moveTo(-11, 0);
+                context.lineTo(-13, -12); 
+                context.lineTo(-6, -6);
+                context.lineTo(0, -16);  
+                context.lineTo(6, -6);
+                context.lineTo(13, -12);  
+                context.lineTo(11, 0);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+                // Jewels on crown
+                context.fillStyle = muffler;
+                context.beginPath();
+                context.arc(-13, -12, 2.2, 0, Math.PI * 2);
+                context.arc(0, -16, 2.5, 0, Math.PI * 2);
+                context.arc(13, -12, 2.2, 0, Math.PI * 2);
+                context.fill();
+                context.restore();
+
+                // Royal Muffler Scarf
+                context.fillStyle = muffler;
+                drawSafeRoundRect(context, x - 17, bodyY - 6, 34, 7.5, 3.5);
+                context.stroke();
+                
+                // Tail
+                const tailSway = Math.sin(runFrame * 2.2) * 4;
+                context.beginPath();
+                context.moveTo(x + 2, bodyY - 2);
+                context.quadraticCurveTo(x + 10 + tailSway, bodyY, x + 12 + tailSway, bodyY + 14);
+                context.lineTo(x + 5 + tailSway, bodyY + 14);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+            } else if (species === 'rabbit') {
+                // --- RABBIT PRINCESS (WHITE RABBIT) ---
+                // Fluffy tail
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.arc(x - 16, y + 28, 8.5, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Feet
+                context.fillStyle = '#ffffff';
+                let legL = Math.sin(runFrame) * 8;
+                let legR = -Math.sin(runFrame) * 8;
+                if (isSliding) { legL = legR = 0; }
+                context.beginPath();
+                context.ellipse(x - 8 + legL, y + 30, 7.5, 4.5, 0, 0, Math.PI * 2);
+                context.ellipse(x + 8 + legR, y + 30, 7.5, 4.5, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Chubby Body
+                const bodyY = isSliding ? y + 10 : y + 18;
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.ellipse(x, bodyY + 4, 19, 21, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Royal dress
+                context.fillStyle = outfit;
+                if (gender === 'girl') {
+                    // Puffy shoulder pads
+                    context.beginPath();
+                    context.ellipse(x - 14, bodyY, 5.5, 5.5, 0, 0, Math.PI * 2);
+                    context.ellipse(x + 14, bodyY, 5.5, 5.5, 0, 0, Math.PI * 2);
+                    context.fill();
+                    context.stroke();
+
+                    // Beautiful dress outline
+                    context.beginPath();
+                    context.moveTo(-16 + x, bodyY - 4);
+                    context.lineTo(16 + x, bodyY - 4);
+                    context.quadraticCurveTo(x + 22, bodyY + 14, x + 18, bodyY + 16);
+                    context.lineTo(x - 18, bodyY + 16);
+                    context.quadraticCurveTo(x - 22, bodyY + 14, -16 + x, bodyY - 4);
+                    context.closePath();
+                    context.fill();
+                    context.stroke();
+
+                    // Gold dress lace hemline
+                    context.strokeStyle = '#ffd700';
+                    context.lineWidth = 1.8;
+                    context.beginPath();
+                    context.moveTo(x - 18, bodyY + 13);
+                    context.lineTo(x + 18, bodyY + 13);
+                    context.stroke();
+                    context.strokeStyle = '#1a0429'; 
+                    context.lineWidth = 3;
+                } else {
+                    // Prince coat jacket
+                    context.beginPath();
+                    context.ellipse(x, bodyY + 4, 14, 15, 0, 0, Math.PI * 2);
+                    context.fill();
+                    context.stroke();
+
+                    // Gold button studs
+                    context.fillStyle = '#ffd700';
+                    context.fillRect(x - 15, bodyY - 4, 4.5, 2); 
+                    context.fillRect(x + 10.5, bodyY - 4, 4.5, 2);  
+                    context.beginPath();
+                    context.arc(x, bodyY + 1, 2.2, 0, Math.PI * 2);
+                    context.arc(x, bodyY + 7, 2.2, 0, Math.PI * 2);
+                    context.fill();
+                }
+
+                // Long Ears with pink inner core
+                context.fillStyle = '#ffffff';
+                let earSway = Math.sin(runFrame * 1.5) * 0.12;
+                if (!isGrounded) earSway = -0.35; 
+                if (isSliding) earSway = -0.65; 
+
+                // Left Ear
+                context.save();
+                context.translate(x - 9, y - 14);
+                context.rotate(earSway);
+                drawSafeRoundRect(context, -4.5, -20, 9, 22, 4.5);
+                context.stroke();
+                context.fillStyle = '#fecdd3'; 
+                drawSafeRoundRect(context, -2.2, -17, 4.5, 16, 2.2);
+                context.restore();
+
+                // Right Ear
+                context.fillStyle = '#ffffff';
+                context.save();
+                context.translate(x + 9, y - 14);
+                context.rotate(-earSway);
+                drawSafeRoundRect(context, -4.5, -20, 9, 22, 4.5);
+                context.stroke();
+                context.fillStyle = '#fecdd3';
+                drawSafeRoundRect(context, -2.2, -17, 4.5, 16, 2.2);
+                context.restore();
+
+                // Chubby Round Head
+                context.fillStyle = '#ffffff';
+                context.beginPath();
+                context.arc(x, y - 6, 21, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Face cheeks area (skin mask)
+                context.fillStyle = '#f1f5f9';
+                context.beginPath();
+                context.arc(x - 5, y - 2 + tiltY, 6.5, 0, Math.PI * 2);
+                context.arc(x + 5, y - 2 + tiltY, 6.5, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Buck teeth
+                context.fillStyle = '#ffffff';
+                context.fillRect(x - 2.5, y + 2 + tiltY, 2.2, 5);
+                context.fillRect(x + 0.3, y + 2 + tiltY, 2.2, 5);
+                context.strokeRect(x - 2.5, y + 2 + tiltY, 2.2, 5);
+                context.strokeRect(x + 0.3, y + 2 + tiltY, 2.2, 5);
+
+                // Small triangular pink nose
+                context.fillStyle = '#fb7185';
+                context.beginPath();
+                context.moveTo(x - 2.5, y - 3 + tiltY);
+                context.lineTo(x + 2.5, y - 3 + tiltY);
+                context.lineTo(x, y + tiltY);
+                context.closePath();
+                context.fill();
+
+                // Eyes with sparkles
+                context.fillStyle = '#000000';
+                if (isBlinking) {
+                    context.beginPath(); context.arc(x - 6, y - 8 + tiltY, 4.5, Math.PI, 0, false); context.stroke();
+                    context.beginPath(); context.arc(x + 6, y - 8 + tiltY, 4.5, Math.PI, 0, false); context.stroke();
+                } else {
+                    context.beginPath(); context.arc(x - 6, y - 8 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                    context.beginPath(); context.arc(x + 6, y - 8 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                }
+
+                // Radial Blush Cheeks
+                const bLeft = context.createRadialGradient(x - 11, y - 3 + tiltY, 0, x - 11, y - 3 + tiltY, 6.5);
+                bLeft.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bLeft.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bLeft;
+                context.beginPath(); context.arc(x - 11, y - 3 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                const bRight = context.createRadialGradient(x + 11, y - 3 + tiltY, 0, x + 11, y - 3 + tiltY, 6.5);
+                bRight.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bRight.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bRight;
+                context.beginPath(); context.arc(x + 11, y - 3 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                // Tiara or crown
+                if (gender === 'girl') {
+                    context.fillStyle = '#f1f5f9'; 
+                    context.beginPath();
+                    context.moveTo(x - 8, y - 22 + tiltY);
+                    context.lineTo(x - 10, y - 29 + tiltY);
+                    context.lineTo(x - 4, y - 26 + tiltY);
+                    context.lineTo(x, y - 32 + tiltY); 
+                    context.lineTo(x + 4, y - 26 + tiltY);
+                    context.lineTo(x + 10, y - 29 + tiltY);
+                    context.lineTo(x + 8, y - 22 + tiltY);
+                    context.closePath();
+                    context.fill();
+                    context.stroke();
+
+                    context.fillStyle = muffler;
+                    context.beginPath();
+                    context.arc(x, y - 32 + tiltY, 1.8, 0, Math.PI * 2);
+                    context.fill();
+                } else {
+                    context.fillStyle = '#ffd700';
+                    context.beginPath();
+                    context.moveTo(x - 9, y - 22 + tiltY);
+                    context.lineTo(x - 11, y - 28 + tiltY);
+                    context.lineTo(x, y - 25 + tiltY);
+                    context.lineTo(x + 11, y - 28 + tiltY);
+                    context.lineTo(x + 9, y - 22 + tiltY);
+                    context.closePath();
+                    context.fill();
+                    context.stroke();
+                }
+
+                // Muffler Scarf
+                context.fillStyle = muffler;
+                drawSafeRoundRect(context, x - 15, bodyY - 11, 30, 7.5, 3.5);
+                context.stroke();
+                
+                // Hanging tail of scarf
+                const tailSway = Math.sin(runFrame * 2.2) * 3;
+                context.beginPath();
+                context.moveTo(x + 1, bodyY - 7);
+                context.quadraticCurveTo(x + 7 + tailSway, bodyY, x + 9 + tailSway, bodyY + 12);
+                context.lineTo(x + 4 + tailSway, bodyY + 12);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+            } else {
+                // --- MONKEY EXPLORER (CHUBBY MONKEY) ---
+                // Feet
+                context.fillStyle = '#8B4513';
+                let legL = Math.sin(runFrame) * 8;
+                let legR = -Math.sin(runFrame) * 8;
+                if (isSliding) { legL = legR = 0; }
+                context.beginPath();
+                context.ellipse(x - 7 + legL, y + 30, 6.5, 4.5, 0, 0, Math.PI * 2);
+                context.ellipse(x + 7 + legR, y + 30, 6.5, 4.5, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Round Ears
+                context.fillStyle = '#8B4513';
+                context.beginPath(); context.arc(x - 22, y - 6, 11, 0, Math.PI * 2); context.fill(); context.stroke();
+                context.beginPath(); context.arc(x + 22, y - 6, 11, 0, Math.PI * 2); context.fill(); context.stroke();
+                context.fillStyle = '#FFD1A4';
+                context.beginPath(); context.arc(x - 22, y - 6, 6.5, 0, Math.PI * 2); context.fill();
+                context.beginPath(); context.arc(x + 22, y - 6, 6.5, 0, Math.PI * 2); context.fill();
+
+                // Chubby Head
+                context.fillStyle = '#8B4513';
+                context.beginPath();
+                context.arc(x, y - 6, 23, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Heart face skin tone mask
+                context.fillStyle = '#FFD1A4';
+                context.beginPath();
+                context.arc(x - 8, y - 8 + tiltY, 11, 0, Math.PI * 2);
+                context.arc(x + 8, y - 8 + tiltY, 11, 0, Math.PI * 2);
+                context.arc(x, y + 3 + tiltY, 14, 0, Math.PI * 2);
+                context.fill();
+
+                // Eyes with sparkles
+                context.fillStyle = '#000000';
+                if (isBlinking) {
+                    context.beginPath(); context.arc(x - 6, y - 8 + tiltY, 4.5, Math.PI, 0, false); context.stroke();
+                    context.beginPath(); context.arc(x + 6, y - 8 + tiltY, 4.5, Math.PI, 0, false); context.stroke();
+                } else {
+                    context.beginPath(); context.arc(x - 6, y - 8 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                    context.beginPath(); context.arc(x + 6, y - 8 + tiltY, 3, 0, Math.PI * 2); context.fill();
+                }
+
+                // Cheeks Highlight Blush
+                const bLeft = context.createRadialGradient(x - 11, y - 4 + tiltY, 0, x - 11, y - 4 + tiltY, 6.5);
+                bLeft.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bLeft.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bLeft;
+                context.beginPath(); context.arc(x - 11, y - 4 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                const bRight = context.createRadialGradient(x + 11, y - 4 + tiltY, 0, x + 11, y - 4 + tiltY, 6.5);
+                bRight.addColorStop(0, 'rgba(244, 114, 182, 0.95)');
+                bRight.addColorStop(1, 'rgba(244, 114, 182, 0)');
+                context.fillStyle = bRight;
+                context.beginPath(); context.arc(x + 11, y - 4 + tiltY, 6.5, 0, Math.PI * 2); context.fill();
+
+                // Nose & Mouth smile
+                context.fillStyle = '#654321';
+                context.beginPath(); context.arc(x, y - 1 + tiltY, 2.2, 0, Math.PI * 2); context.fill();
+                context.strokeStyle = '#000000';
+                context.lineWidth = 1.8;
+                context.beginPath();
+                context.arc(x, y + 2 + tiltY, 6, 0.1, Math.PI - 0.1, false);
+                context.stroke();
+                context.strokeStyle = '#1a0429'; 
+                context.lineWidth = 3;
+
+                // Chubby Body in Explorer safari outfit
+                const bodyY = isSliding ? y + 10 : y + 18;
+                context.fillStyle = outfit;
+                context.beginPath();
+                context.ellipse(x, bodyY + 3, 18, 19, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                // Safari pocket details & belt buckle
+                context.fillStyle = '#1a0429'; 
+                context.fillRect(x - 10, bodyY - 1, 4.5, 4.5); 
+                context.fillRect(x + 5, bodyY - 1, 4.5, 4.5);  
+                context.fillStyle = '#451a03'; 
+                context.fillRect(x - 16, bodyY + 7, 32, 4);
+                context.fillStyle = '#ffd700'; 
+                context.fillRect(x - 4, bodyY + 5.5, 8, 7);
+
+                // Safari Pith explorer helmet
+                context.fillStyle = '#e2d3b5'; 
+                context.beginPath();
+                context.arc(x, y - 23 + tiltY, 15, Math.PI, 0, false);
+                context.closePath();
+                context.fill();
+                context.stroke();
+
+                context.beginPath();
+                context.ellipse(x, y - 22 + tiltY, 25, 4, 0, 0, Math.PI * 2);
+                context.fill();
+                context.stroke();
+
+                context.fillStyle = muffler;
+                context.fillRect(x - 12, y - 25 + tiltY, 24, 3.5);
+
+                // Pink ribbon for girl explorer
+                if (gender === 'girl') {
+                    context.fillStyle = '#ec4899';
+                    context.beginPath();
+                    context.arc(x + 12, y - 29 + tiltY, 3, 0, Math.PI * 2);
+                    context.fill();
+                    context.fillStyle = '#ffffff';
+                    context.beginPath();
+                    context.arc(x + 12, y - 29 + tiltY, 1.2, 0, Math.PI * 2);
+                    context.fill();
+                }
+
+                // Explorer neckerchief
+                context.fillStyle = muffler;
+                drawSafeRoundRect(context, x - 16, bodyY - 10, 32, 8, 3.5);
+                context.stroke();
+                
+                // Tail
+                const tailSway = Math.sin(runFrame * 2.2) * 4;
+                context.beginPath();
+                context.moveTo(x + 2, bodyY - 7);
+                context.quadraticCurveTo(x + 10 + tailSway, bodyY, x + 12 + tailSway, bodyY + 14);
+                context.lineTo(x + 5 + tailSway, bodyY + 14);
+                context.closePath();
+                context.fill();
+                context.stroke();
+            }
+
+            context.restore();
+        }
+
+        const previewCanvas = document.getElementById('previewCanvas');
+        const pCtx = previewCanvas.getContext('2d');
+
+        function drawPreviewMonkey() {
+            pCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+            
+            const glow = pCtx.createRadialGradient(90, 90, 10, 90, 90, 80);
+            glow.addColorStop(0, 'rgba(255,255,255,0.25)');
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            pCtx.fillStyle = glow;
+            pCtx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+
+            const breath = Math.sin(Date.now() / 250) * 1.5;
+            const x = 90;
+            const y = 92 + breath;
+
+            pCtx.save();
+            pCtx.translate(90, 90);
+            pCtx.scale(1.15, 1.15); 
+            pCtx.translate(-90, -90);
+            drawCharacterSkin(pCtx, x, y, GameState.player.species, GameState.player.gender, GameState.player.outfitColor, GameState.player.mufflerColor, false, Date.now() / 250, true, 0);
+            pCtx.restore();
+        }
+
+        function setSpecies(sp) {
+            GameState.player.species = sp;
+            AudioSys.playTone(400, 'sine', 0.08, 0.2);
+            drawPreviewMonkey();
+            updateCustomizationSelectionUI();
+        }
+
+        function setGender(g) {
+            GameState.player.gender = g;
+            AudioSys.playTone(400, 'sine', 0.08, 0.2);
+            drawPreviewMonkey();
+            updateCustomizationSelectionUI();
+        }
+
+        function setOutfit(color) {
+            GameState.player.outfitColor = color;
+            AudioSys.playTone(420, 'sine', 0.08, 0.2);
+            drawPreviewMonkey();
+            updateCustomizationSelectionUI();
+        }
+
+        function setMuffler(color) {
+            GameState.player.mufflerColor = color;
+            AudioSys.playTone(440, 'sine', 0.08, 0.2);
+            drawPreviewMonkey();
+            updateCustomizationSelectionUI();
+        }
+
+        function updateCustomizationSelectionUI() {
+            const mBtn = document.getElementById('speciesBtn-monkey');
+            const rBtn = document.getElementById('speciesBtn-rabbit');
+            const pBtn = document.getElementById('speciesBtn-penguin');
+            
+            if (GameState.player.species === 'monkey') {
+                mBtn.className = "bg-amber-500 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-white transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                rBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                pBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+            } else if (GameState.player.species === 'rabbit') {
+                mBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                rBtn.className = "bg-pink-500 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-white transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                pBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+            } else {
+                mBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                rBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-transparent transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+                pBtn.className = "bg-pink-400 text-white font-bold py-2.5 px-3 rounded-xl border-2 border-white transition text-sm flex flex-col items-center justify-center gap-1 shadow";
+            }
+
+            const bBtn = document.getElementById('genderBtn-boy');
+            const gBtn = document.getElementById('genderBtn-girl');
+            if (GameState.player.gender === 'boy') {
+                bBtn.className = "bg-amber-500 text-white font-bold py-2 px-3 rounded-xl border-2 border-white transition text-sm flex items-center justify-center gap-1.5 shadow";
+                gBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-3 rounded-xl border-2 border-transparent transition text-sm flex items-center justify-center gap-1.5 shadow";
+            } else {
+                bBtn.className = "bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-3 rounded-xl border-2 border-transparent transition text-sm flex items-center justify-center gap-1.5 shadow";
+                gBtn.className = "bg-pink-500 text-white font-bold py-2 px-3 rounded-xl border-2 border-white transition text-sm flex items-center justify-center gap-1.5 shadow";
+            }
+
+            ['red', 'blue', 'green', 'yellow', 'purple'].forEach(col => {
+                const el = document.getElementById(`outfit-${col}`);
+                if (GameState.player.outfitColor === col) {
+                    el.classList.add('border-white', 'ring-2', 'ring-offset-2', `ring-${col}-500`);
+                    el.classList.remove('border-transparent');
+                } else {
+                    el.classList.remove('border-white', 'ring-2', 'ring-offset-2', `ring-${col}-500`);
+                    el.classList.add('border-transparent');
+                }
+            });
+
+            ['red', 'blue', 'green', 'black', 'rainbow'].forEach(col => {
+                const el = document.getElementById(`muffler-${col}`);
+                if (GameState.player.mufflerColor === col) {
+                    el.classList.add('border-white', 'ring-2', 'ring-offset-2', 'ring-amber-400');
+                    el.classList.remove('border-transparent');
+                } else {
+                    el.classList.remove('border-white', 'ring-2', 'ring-offset-2', 'ring-amber-400');
+                    el.classList.add('border-transparent');
+                }
+            });
+
+            const specSp = GameState.player.species === 'monkey' ? 'القِرْدُ المُسْتَكْشِفُ' : GameState.player.species === 'rabbit' ? 'الأَرْنَبُ الأَمِيرَةُ' : 'البِطْرِيقُ مَلِكٌ';
+            const specGd = GameState.player.gender === 'boy' ? 'ذَكَرٌ' : 'أُنْثَى';
+            const specOutfit = outfitArabic[GameState.player.outfitColor] || 'الأَحْمَرَ';
+            document.getElementById('previewSpecs').innerText = `${specSp} (${specGd}) - زِيّ ${specOutfit}`;
+        }
+
+        // ----------------- SCREEN NAVIGATION & FLOW -----------------
+        function goToScreen(screenId) {
+            AudioSys.init();
+            const screens = ['mainMenu', 'playerNameScreen', 'customizationScreen', 'gamePlayScreen', 'quizScreen', 'rankingScreen', 'gameOverScreen'];
+            screens.forEach(s => {
+                document.getElementById(s).classList.add('hidden');
+            });
+
+            document.getElementById(screenId).classList.remove('hidden');
+            GameState.currentScreen = screenId;
+
+            if (screenId === 'mainMenu') {
+                AudioSys.startMusic();
+            } else if (screenId === 'customizationScreen') {
+                document.getElementById('playerGreeting').innerText = `مَرْحَبًا يَا ${GameState.player.name}، قُمْ بِتَخْصِيصِ شَخْصِيَّتِكَ أَدْنَاهُ:`;
+                drawPreviewMonkey();
+                updateCustomizationSelectionUI();
+                if (window.previewInterval) clearInterval(window.previewInterval);
+                window.previewInterval = setInterval(drawPreviewMonkey, 30);
+            } else if (screenId === 'gamePlayScreen') {
+                if (window.previewInterval) clearInterval(window.previewInterval);
+                resizeCanvas();
+            } else if (screenId === 'rankingScreen') {
+                if (window.previewInterval) clearInterval(window.previewInterval);
+                renderLeaderboard();
+            }
+        }
+
+        function openTutorial() {
+            AudioSys.playTone(350, 'sine', 0.1, 0.3);
+            document.getElementById('tutorialModal').classList.remove('hidden');
+        }
+
+        function closeTutorial() {
+            AudioSys.playTone(250, 'sine', 0.1, 0.3);
+            document.getElementById('tutorialModal').classList.add('hidden');
+        }
+
+        function openRanking() {
+            goToScreen('rankingScreen');
+        }
+
+        function submitPlayerName() {
+            const nameInp = document.getElementById('playerNameInput').value.trim();
+            if (nameInp === "") {
+                AudioSys.playFail();
+                const container = document.getElementById('playerNameInput');
+                container.classList.add('border-red-500', 'shake-ui');
+                setTimeout(() => container.classList.remove('border-red-500', 'shake-ui'), 500);
+                return;
+            }
+            GameState.player.name = nameInp;
+            AudioSys.playSuccess();
+            goToScreen('customizationScreen');
+        }
+
+        function renderLeaderboard() {
+            const container = document.getElementById('rankingItemsContainer');
+            container.innerHTML = '';
+            
+            const sorted = [...HighScores].sort((a,b) => b.score - a.score);
+
+            sorted.forEach((item, index) => {
+                let badge = `<span class="font-bold text-slate-400 text-sm">#${index + 1}</span>`;
+                if (index === 0) badge = '🥇';
+                else if (index === 1) badge = '🥈';
+                else if (index === 2) badge = '🥉';
+                else if (index === 3) badge = '🏅';
+
+                const card = document.createElement('div');
+                card.className = "bg-white/10 hover:bg-white/20 px-4 py-3 rounded-2xl flex items-center justify-between border border-white/5 transition duration-150";
+                
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">${badge}</span>
+                        <div class="text-right">
+                            <p class="font-extrabold text-white text-base">${item.name}</p>
+                            <p class="text-[10px] text-indigo-300">${item.date === 'Baru' ? 'حديثاً' : item.date}</p>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <span class="text-amber-400 font-black text-lg">${item.score}</span>
+                        <span class="text-xs text-indigo-200"> نُقْطَةً</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function quitGame() {
+            goToScreen('mainMenu');
+        }
+
+        function createScenicParticles() {
+            const leavesCont = document.getElementById('forestLeavesContainer');
+            const petalsCont = document.getElementById('springPetalsContainer');
+            const snowCont = document.getElementById('winterSnowflakesContainer');
+
+            leavesCont.innerHTML = '';
+            for (let i = 0; i < 15; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'absolute bg-green-500 rounded-tr-3xl rounded-bl-3xl';
+                leaf.style.width = `${12 + Math.random() * 14}px`;
+                leaf.style.height = `${8 + Math.random() * 10}px`;
+                leaf.style.left = `${Math.random() * 100}%`;
+                leaf.style.top = `-${Math.random() * 20}%`;
+                leaf.style.opacity = `${0.3 + Math.random() * 0.5}`;
+                leaf.style.animation = `driftLeaf ${8 + Math.random() * 6}s linear infinite`;
+                leaf.style.animationDelay = `${Math.random() * 10}s`;
+                leavesCont.appendChild(leaf);
+            }
+
+            petalsCont.innerHTML = '';
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'absolute bg-pink-300 rounded-full opacity-80';
+                petal.style.width = `${8 + Math.random() * 10}px`;
+                petal.style.height = `${8 + Math.random() * 8}px`;
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.top = `-${Math.random() * 20}%`;
+                petal.style.animation = `driftPetal ${6 + Math.random() * 5}s linear infinite`;
+                petal.style.animationDelay = `${Math.random() * 8}s`;
+                petalsCont.appendChild(petal);
+            }
+
+            snowCont.innerHTML = '';
+            for (let i = 0; i < 20; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'absolute bg-white rounded-full opacity-85';
+                const size = 3 + Math.random() * 5;
+                flake.style.width = `${size}px`;
+                flake.style.height = `${size}px`;
+                flake.style.left = `${Math.random() * 100}%`;
+                flake.style.top = `-${Math.random() * 20}%`;
+                flake.style.animation = `driftSnowflake ${5 + Math.random() * 5}s linear infinite`;
+                flake.style.animationDelay = `${Math.random() * 7}s`;
+                snowCont.appendChild(flake);
+            }
+        }
+
+        // ----------------- CORE 2D GAME ENGINE & CANVAS -----------------
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            groundY = canvas.height - 110;
+            if (monkey) {
+                monkey.groundY = groundY;
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        class MonkeyPlayer {
+            constructor() {
+                this.width = CONFIG.monkeyBaseWidth;
+                this.height = CONFIG.monkeyBaseHeight;
+                this.x = 80;
+                this.y = 0;
+                this.vy = 0;
+                this.groundY = 0;
+                this.isGrounded = false;
+                this.jumpCount = 0;
+                this.isSliding = false;
+                this.slideTimer = 0;
+                this.runFrame = 0;
+                this.angle = 0;
+            }
+
+            reset(groundY) {
+                this.groundY = groundY;
+                this.y = groundY - this.height;
+                this.vy = 0;
+                this.isGrounded = true;
+                this.jumpCount = 0;
+                this.isSliding = false;
+                this.slideTimer = 0;
+                this.runFrame = 0;
+                this.angle = 0;
+            }
+
+            jump() {
+                if (this.isGrounded) {
+                    this.vy = -13.5;
+                    this.isGrounded = false;
+                    this.jumpCount = 1;
+                    this.isSliding = false;
+                    AudioSys.playTone(400, 'sine', 0.08, 0.25, 450); 
+                } else if (this.jumpCount === 1) {
+                    this.vy = -11.5;
+                    this.jumpCount = 2;
+                    AudioSys.playTone(500, 'sine', 0.08, 0.25, 550); 
+                }
+            }
+
+            slide() {
+                if (!this.isSliding) {
+                    this.isSliding = true;
+                    this.slideTimer = 35; 
+                    this.vy = 5; 
+                    AudioSys.playSlide();
+                }
+            }
+
+            update() {
+                this.vy += CONFIG.gravity;
+                this.y += this.vy;
+
+                if (this.isSliding) {
+                    this.height = CONFIG.monkeyBaseHeight / 2;
+                    this.slideTimer--;
+                    if (this.slideTimer <= 0) {
+                        this.isSliding = false;
+                        this.height = CONFIG.monkeyBaseHeight;
+                    }
+                } else {
+                    this.height = CONFIG.monkeyBaseHeight;
+                }
+
+                if (this.y >= this.groundY - this.height) {
+                    this.y = this.groundY - this.height;
+                    this.vy = 0;
+                    this.isGrounded = true;
+                    this.jumpCount = 0;
+                }
+
+                this.runFrame += 0.25;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+
+                if (!this.isGrounded) {
+                    this.angle = (this.vy < 0) ? -0.1 : 0.1;
+                    ctx.rotate(this.angle);
+                } else if (this.isSliding) {
+                    this.angle = -0.2;
+                    ctx.rotate(this.angle);
+                } else {
+                    const bounce = Math.sin(this.runFrame) * 2.5;
+                    ctx.translate(0, bounce);
+                }
+
+                drawCharacterSkin(ctx, 0, 0, GameState.player.species, GameState.player.gender, GameState.player.outfitColor, GameState.player.mufflerColor, this.isSliding, this.runFrame, this.isGrounded, this.vy);
+
+                ctx.restore();
+
+                // Draw Registered Player Name floating elegantly above the character
+                ctx.save();
+                ctx.fillStyle = '#facc15'; // Vibrant Amber Yellow to pop out nicely
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 3;
+                ctx.font = '900 13px Cairo, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                // Stroke outline first
+                ctx.strokeText(GameState.player.name, this.x + this.width / 2, this.y - 12);
+                // Fill text inside
+                ctx.fillText(GameState.player.name, this.x + this.width / 2, this.y - 12);
+                ctx.restore();
+            }
+
+            getCollisionRect() {
+                return {
+                    x: this.x + 8,
+                    y: this.y + 4,
+                    width: this.width - 16,
+                    height: this.height - 8
+                };
+            }
+        }
+
+        // ----------------- SCENIC PARALLAX PLATFORMER BACKGROUNDS -----------------
+        class ScenicParallaxLayer {
+            constructor(y, speedFactor, drawFunc) {
+                this.y = y;
+                this.speedFactor = speedFactor;
+                this.drawFunc = drawFunc;
+                this.xOffset = 0;
+            }
+
+            update(speed) {
+                this.xOffset -= speed * this.speedFactor;
+                if (Math.abs(this.xOffset) >= canvas.width * 2) {
+                    this.xOffset = 0;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.xOffset, 0);
+                this.drawFunc(0);
+                this.drawFunc(canvas.width);
+                this.drawFunc(canvas.width * 2);
+                ctx.restore();
+            }
+        }
+
+        class BackgroundLayer {
+            constructor(y, speedFactor, color, density = 4) {
+                this.y = y;
+                this.speedFactor = speedFactor;
+                this.color = color;
+                this.elements = [];
+                for (let i = 0; i < density; i++) {
+                    this.elements.push({
+                        x: Math.random() * canvas.width * 1.5,
+                        width: 80 + Math.random() * 120,
+                        height: 120 + Math.random() * 180
+                    });
+                }
+            }
+
+            update(speed) {
+                this.elements.forEach(el => {
+                    el.x -= speed * this.speedFactor;
+                    if (el.x + el.width < 0) {
+                        el.x = canvas.width + Math.random() * 200;
+                    }
+                });
+            }
+
+            drawTreeSilhouettes() {
+                ctx.fillStyle = this.color;
+                this.elements.forEach(el => {
+                    ctx.fillRect(el.x + el.width/2 - 10, this.y - el.height, 20, el.height);
+                    ctx.beginPath();
+                    ctx.moveTo(el.x, this.y - el.height + 30);
+                    ctx.lineTo(el.x + el.width/2, this.y - el.height - 40);
+                    ctx.lineTo(el.x + el.width, this.y - el.height + 30);
+                    ctx.closePath();
+                    ctx.fill();
+                });
+            }
+        }
+
+        class Cloud {
+            constructor() {
+                this.x = Math.random() * 2000;
+                this.y = 40 + Math.random() * 110;
+                this.speed = 0.15 + Math.random() * 0.35;
+                this.scale = 0.6 + Math.random() * 0.7;
+            }
+            update() {
+                this.x -= this.speed;
+                if (this.x < -180) {
+                    this.x = canvas.width + 100;
+                    this.y = 40 + Math.random() * 110;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.fillStyle = "rgba(255, 255, 255, 0.28)";
+                ctx.shadowColor = "rgba(255,255,255,0.05)";
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 25 * this.scale, 0, Math.PI * 2);
+                ctx.arc(this.x + 35 * this.scale, this.y - 12 * this.scale, 35 * this.scale, 0, Math.PI * 2);
+                ctx.arc(this.x + 70 * this.scale, this.y, 25 * this.scale, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        class RainSplash {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.life = 12;
+            }
+            update() { this.life--; }
+            draw() {
+                ctx.strokeStyle = `rgba(186, 230, 253, ${this.life / 12})`;
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.ellipse(this.x, this.y, (12 - this.life) * 1.5, (12 - this.life) * 0.5, 0, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+
+        class Butterfly {
+            constructor() {
+                this.x = Math.random() * 1200;
+                this.y = groundY - 60 - Math.random() * 120;
+                this.speedX = 0.8 + Math.random() * 1.2;
+                this.angle = Math.random() * Math.PI * 2;
+                this.color = ["#f472b6", "#38bdf8", "#fbbf24", "#c084fc"][Math.floor(Math.random() * 4)];
+            }
+            update() {
+                this.x -= this.speedX + speed * 0.3;
+                this.y += Math.sin(this.angle) * 1.5;
+                this.angle += 0.08;
+                if (this.x < -30) {
+                    this.x = canvas.width + 40;
+                    this.y = groundY - 60 - Math.random() * 120;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.fillStyle = this.color;
+                const flap = Math.abs(Math.sin(Date.now() / 90)) * 6.5;
+                ctx.beginPath();
+                ctx.ellipse(-3.5, 0, flap, 8, -Math.PI / 6, 0, Math.PI * 2);
+                ctx.ellipse(3.5, 0, flap, 8, Math.PI / 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = "#1e293b";
+                ctx.fillRect(-1, -6, 2, 12);
+                ctx.restore();
+            }
+        }
+
+        let scenicParallaxLayers = [];
+        let livingClouds = [];
+        let livingRainSplashes = [];
+        let livingButterflies = [];
+
+        let lightningFlashActive = false;
+        let lightningFlashAlpha = 0;
+        let lightningBoltsPath = [];
+
+        function generateLightningPath() {
+            let path = [];
+            let cx = Math.random() * (canvas.width - 200) + 100;
+            let cy = 0;
+            path.push({x: cx, y: cy});
+            while (cy < groundY) {
+                cy += 20 + Math.random() * 30;
+                cx += (Math.random() - 0.5) * 65;
+                path.push({x: cx, y: cy});
+            }
+            return path;
+        }
+
+        function triggerLightningFlash() {
+            lightningFlashActive = true;
+            lightningFlashAlpha = 0.95;
+            lightningBoltsPath = [];
+            lightningBoltsPath.push(generateLightningPath());
+            if (Math.random() > 0.5) {
+                lightningBoltsPath.push(generateLightningPath());
+            }
+            AudioSys.playTone(55, 'sawtooth', 0.6, 0.35, 25);
+        }
+
+        function activateSpecialPower() {
+            if (GameState.powerCharges > 0 && GameState.isPlaying) {
+                GameState.powerCharges--;
+                AudioSys.playExplosion();
+
+                // Trigger screen-shaking effect
+                const canvasEl = document.getElementById('gamePlayScreen');
+                canvasEl.classList.add('shake-ui');
+                setTimeout(() => canvasEl.classList.remove('shake-ui'), 500);
+
+                // Add magical purple plasma explosion shockwave ring centered on the monkey player
+                explosionRings.push({
+                    x: monkey.x + monkey.width / 2,
+                    y: monkey.y + monkey.height / 2,
+                    radius: 10,
+                    maxRadius: canvas.width * 0.7,
+                    alpha: 1.0
+                });
+
+                // Explode and blast away all obstacles on the screen currently
+                obstacles.forEach(obs => {
+                    // Spawn cool glowing debris particles
+                    for (let p = 0; p < 12; p++) {
+                        debrisParticles.push({
+                            x: obs.x + obs.width / 2,
+                            y: obs.y + obs.height / 2,
+                            vx: (Math.random() - 0.5) * 11 - speed * 0.4,
+                            vy: (Math.random() - 0.5) * 11 - 4,
+                            color: obs.type === 'stone' ? '#64748b' : obs.type === 'tree_trunk' ? '#78350f' : '#ff4500',
+                            life: 25
+                        });
+                    }
+                });
+                obstacles = []; // Blast away all obstacles
+
+                updateUIPanels();
+            } else if (GameState.powerCharges <= 0) {
+                AudioSys.playFail(); // No power charges left buzz
+            }
+        }
+
+        function buildScenicParallaxBackground() {
+            resizeCanvas();
+
+            monkey = new MonkeyPlayer();
+            monkey.reset(groundY);
+
+            const sProfile = Seasons[GameState.currentLevel];
+
+            backgroundLayers = [
+                new BackgroundLayer(groundY, 0.15, sProfile.treeColor + "44", 3), 
+                new BackgroundLayer(groundY, 0.45, sProfile.treeColor + "aa", 4)  
+            ];
+
+            obstacles = [];
+            collectibles = [];
+            spawnTimer = 0;
+            speed = CONFIG.initialSpeed + (GameState.currentLevel - 1) * CONFIG.speedIncrement;
+            distanceProgress = 0;
+
+            scenicParallaxLayers = [];
+            const level = GameState.currentLevel;
+            const colors = Seasons[level];
+
+            livingClouds = [];
+            for (let i = 0; i < 6; i++) {
+                livingClouds.push(new Cloud());
+            }
+
+            livingButterflies = [];
+            if (level === 5) {
+                for (let i = 0; i < 2; i++) { 
+                    livingButterflies.push(new Butterfly());
+                }
+            }
+
+            // LEVEL 1: HIGH-QUALITY ADVANCED FOREST PLATFORMER BACKGROUND WITH DETAILED SWINGING VINES
+            if (level === 1) {
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.05, (offsetX) => {
+                    ctx.fillStyle = "rgba(22, 101, 52, 0.15)";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX - 2, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.2, groundY - 180, offsetX + canvas.width * 0.45, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.7, groundY - 240, offsetX + canvas.width, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.fillStyle = "rgba(21, 128, 61, 0.2)";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX + canvas.width * 0.3, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.55, groundY - 140, offsetX + canvas.width * 0.8, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.95, groundY - 190, offsetX + canvas.width * 1.2, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.22, (offsetX) => {
+                    ctx.fillStyle = "rgba(20, 83, 45, 0.5)"; 
+                    const t1_x = offsetX + canvas.width * 0.18;
+                    const t2_x = offsetX + canvas.width * 0.62;
+
+                    drawGiantScenicTree(t1_x, groundY, 75, 200, 1);
+                    drawGiantScenicTree(t2_x, groundY, 85, 230, 1);
+
+                    // DRAW THICK SWINGING VINES BETWEEN TREES
+                    ctx.save();
+                    ctx.strokeStyle = "#1b4332"; 
+                    ctx.lineWidth = 5;
+                    ctx.lineCap = "round";
+
+                    const v1_y = groundY - 140;
+                    const v2_y = groundY - 150;
+                    const mid_x = (t1_x + t2_x) / 2;
+                    const mid_y = groundY - 65; 
+
+                    ctx.beginPath();
+                    ctx.moveTo(t1_x, v1_y);
+                    ctx.quadraticCurveTo(mid_x, mid_y, t2_x, v2_y);
+                    ctx.stroke();
+
+                    ctx.strokeStyle = "#2d6a4f"; 
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    for (let t = 0; t <= 1; t += 0.05) {
+                        const px = (1 - t) * (1 - t) * t1_x + 2 * (1 - t) * t * mid_x + t * t * t2_x;
+                        const py = (1 - t) * (1 - t) * v1_y + 2 * (1 - t) * t * mid_y + t * t * v2_y;
+                        const wave = Math.sin(t * Math.PI * 8 + (Date.now() * 0.003)) * 4;
+                        if (t === 0) ctx.moveTo(px, py + wave);
+                        else ctx.lineTo(px, py + wave);
+                    }
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#52b788";
+                    for (let i = 1; i <= 3; i++) {
+                        const t = i * 0.25; 
+                        const px = (1 - t) * (1 - t) * t1_x + 2 * (1 - t) * t * mid_x + t * t * t2_x;
+                        const py = (1 - t) * (1 - t) * v1_y + 2 * (1 - t) * t * mid_y + t * t * v2_y;
+                        
+                        ctx.strokeStyle = "#1b4332";
+                        ctx.lineWidth = 2.5;
+                        ctx.beginPath();
+                        ctx.moveTo(px, py);
+                        const hangLength = 22 + Math.sin(Date.now() * 0.0015 + i) * 3;
+                        ctx.quadraticCurveTo(px + Math.sin(Date.now() * 0.002 + i) * 5, py + hangLength/2, px, py + hangLength);
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        ctx.ellipse(px, py + hangLength, 4.5, 7, Math.PI/4 + Math.sin(Date.now()*0.002)*0.1, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.restore();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.45, (offsetX) => {
+                    ctx.fillStyle = "#5c2d12"; 
+                    ctx.fillRect(offsetX + canvas.width * 0.4, groundY - 25, 35, 25);
+                    ctx.fillStyle = "#854d0e"; 
+                    ctx.beginPath();
+                    ctx.ellipse(offsetX + canvas.width * 0.4 + 17.5, groundY - 25, 17.5, 6, 0, 0, Math.PI*2);
+                    ctx.fill();
+                    ctx.fillStyle = "#15803d"; 
+                    ctx.fillRect(offsetX + canvas.width * 0.4, groundY - 8, 8, 8);
+                    ctx.fillRect(offsetX + canvas.width * 0.4 + 27, groundY - 12, 8, 12);
+
+                    ctx.fillStyle = "#166534";
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.25, groundY, 28, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.3, groundY, 38, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.35, groundY, 24, 0, Math.PI, true);
+                    ctx.fill();
+
+                    ctx.fillStyle = "#15803d";
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.75, groundY, 32, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.81, groundY, 44, 0, Math.PI, true);
+                    ctx.fill();
+                }));
+            } else if (level === 2) {
+                // LEVEL 2: WAKTU SENJA 🌅 WITH POKOK RU & CHRISTMAS HANGING LIGHTS STYLE
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.05, (offsetX) => {
+                    ctx.fillStyle = "rgba(124, 45, 18, 0.15)";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX - 2, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.2, groundY - 180, offsetX + canvas.width * 0.45, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.7, groundY - 240, offsetX + canvas.width, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.22, (offsetX) => {
+                    ctx.fillStyle = "rgba(124, 45, 18, 0.45)";
+                    const t1_x = offsetX + canvas.width * 0.2;
+                    const t2_x = offsetX + canvas.width * 0.7;
+
+                    drawGiantScenicTree(t1_x, groundY, 45, 220, 2); 
+                    drawGiantScenicTree(t2_x, groundY, 50, 240, 2); 
+
+                    // DRAW PROGRESSIVE HANGING CHRISTMAS LIGHTS CONNECTING TREE TO TREE
+                    ctx.save();
+                    ctx.strokeStyle = "rgba(251, 146, 60, 0.5)"; 
+                    ctx.lineWidth = 1.8;
+                    const lh_y1 = groundY - 140;
+                    const lh_y2 = groundY - 150;
+                    const lmid_x = (t1_x + t2_x) / 2;
+                    const lmid_y = groundY - 70; 
+
+                    ctx.beginPath();
+                    ctx.moveTo(t1_x, lh_y1);
+                    ctx.quadraticCurveTo(lmid_x, lmid_y, t2_x, lh_y2);
+                    ctx.stroke();
+
+                    // Glowing festive orange Christmas bulbs
+                    const pulse = Math.abs(Math.sin(Date.now() * 0.005)) * 0.4 + 0.6;
+                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = "#f59e0b";
+                    
+                    for (let step = 0.1; step < 1.0; step += 0.12) {
+                        const bulbX = (1 - step) * (1 - step) * t1_x + 2 * (1 - step) * step * lmid_x + step * step * t2_x;
+                        const bulbY = (1 - step) * (1 - step) * lh_y1 + 2 * (1 - step) * step * lmid_y + step * step * lh_y2;
+                        
+                        ctx.fillStyle = `rgba(245, 158, 11, ${pulse})`;
+                        ctx.beginPath();
+                        ctx.arc(bulbX, bulbY, 4.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.restore();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.45, (offsetX) => {
+                    ctx.fillStyle = "#451a03"; 
+                    ctx.fillRect(offsetX + canvas.width * 0.3, groundY - 20, 25, 20);
+                    ctx.fillStyle = "#7c2d12"; 
+                    ctx.beginPath();
+                    ctx.ellipse(offsetX + canvas.width * 0.3 + 12.5, groundY - 20, 12.5, 4, 0, 0, Math.PI*2);
+                    ctx.fill();
+
+                    ctx.fillStyle = "#9a3412";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX + canvas.width * 0.55, groundY);
+                    ctx.lineTo(offsetX + canvas.width * 0.6, groundY - 60);
+                    ctx.lineTo(offsetX + canvas.width * 0.65, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.fillStyle = "#c2410c";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX + canvas.width * 0.58, groundY);
+                    ctx.lineTo(offsetX + canvas.width * 0.62, groundY - 45);
+                    ctx.lineTo(offsetX + canvas.width * 0.66, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+            } else if (level === 3) {
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.05, (offsetX) => {
+                    ctx.fillStyle = "rgba(15, 23, 42, 0.4)";
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX - 2, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.25, groundY - 200, offsetX + canvas.width * 0.5, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.75, groundY - 250, offsetX + canvas.width, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.22, (offsetX) => {
+                    drawGiantScenicTree(offsetX + canvas.width * 0.15, groundY, 80, 210, 3); 
+                    drawGiantScenicTree(offsetX + canvas.width * 0.65, groundY, 75, 190, 3); 
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.45, (offsetX) => {
+                    ctx.fillStyle = "#020617";
+                    ctx.beginPath();
+                    ctx.ellipse(offsetX + canvas.width * 0.4, groundY, 25, 6, 0, 0, Math.PI * 2);
+                    ctx.ellipse(offsetX + canvas.width * 0.8, groundY, 30, 8, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = "rgba(148, 163, 184, 0.08)";
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.3, groundY - 15, 55, 0, Math.PI * 2);
+                    ctx.arc(offsetX + canvas.width * 0.36, groundY - 30, 75, 0, Math.PI * 2);
+                    ctx.arc(offsetX + canvas.width * 0.45, groundY - 15, 55, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+            } else if (level === 4) {
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.05, (offsetX) => {
+                    ctx.fillStyle = "rgba(30, 58, 138, 0.1)"; 
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX - 2, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.25, groundY - 170, offsetX + canvas.width * 0.5, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.75, groundY - 210, offsetX + canvas.width, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.22, (offsetX) => {
+                    const t1_x = offsetX + canvas.width * 0.18;
+                    const t2_x = offsetX + canvas.width * 0.68;
+
+                    drawGiantScenicTree(t1_x, groundY, 70, 200, 4);
+                    drawGiantScenicTree(t2_x, groundY, 80, 220, 4);
+
+                    // --- DRAW INTER-TREE DRAPED CHRISTMAS LIGHTS ---
+                    ctx.save();
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)"; 
+                    ctx.lineWidth = 1.5;
+                    
+                    const lh_y1 = groundY - 130;
+                    const lh_y2 = groundY - 140;
+                    const lmid_x = (t1_x + t2_x) / 2;
+                    const lmid_y = groundY - 60; 
+
+                    ctx.beginPath();
+                    ctx.moveTo(t1_x, lh_y1);
+                    ctx.quadraticCurveTo(lmid_x, lmid_y, t2_x, lh_y2);
+                    ctx.stroke();
+
+                    const pulse = Math.abs(Math.sin(Date.now() * 0.005)) * 0.5 + 0.5;
+                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = "#f97316"; 
+
+                    for (let step = 0.08; step < 1.0; step += 0.1) {
+                        const bulbX = (1 - step) * (1 - step) * t1_x + 2 * (1 - step) * step * lmid_x + step * step * t2_x;
+                        const bulbY = (1 - step) * (1 - step) * lh_y1 + 2 * (1 - step) * step * lmid_y + step * step * lh_y2;
+
+                        ctx.fillStyle = `rgba(249, 115, 22, ${pulse})`;
+                        ctx.beginPath();
+                        ctx.arc(bulbX, bulbY, 5, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    ctx.restore();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.45, (offsetX) => {
+                    ctx.fillStyle = "#cbd5e1"; 
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.3, groundY, 15, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.35, groundY, 20, 0, Math.PI, true);
+                    ctx.fill();
+                }));
+            } else {
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.08, (offsetX) => {
+                    ctx.fillStyle = colors.treeColor + "22"; 
+                    ctx.beginPath();
+                    ctx.moveTo(offsetX - 2, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.25, groundY - 160, offsetX + canvas.width * 0.5, groundY);
+                    ctx.quadraticCurveTo(offsetX + canvas.width * 0.75, groundY - 220, offsetX + canvas.width, groundY);
+                    ctx.closePath();
+                    ctx.fill();
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.22, (offsetX) => {
+                    ctx.fillStyle = colors.treeColor + "55"; 
+                    drawGiantScenicTree(offsetX + canvas.width * 0.15, groundY, 70, 180, level);
+                    drawGiantScenicTree(offsetX + canvas.width * 0.65, groundY, 80, 210, level);
+                }));
+
+                scenicParallaxLayers.push(new ScenicParallaxLayer(groundY, 0.45, (offsetX) => {
+                    ctx.fillStyle = colors.treeColor + "99";
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.35, groundY, 25, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.4, groundY, 35, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.45, groundY, 20, 0, Math.PI, true);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(offsetX + canvas.width * 0.8, groundY, 30, 0, Math.PI, true);
+                    ctx.arc(offsetX + canvas.width * 0.85, groundY, 40, 0, Math.PI, true);
+                    ctx.fill();
+                }));
+            }
+            
+            document.getElementById('uiLevelSeason').innerText = `المستوى ${GameState.currentLevel}: ${sProfile.name}`;
+            document.getElementById('uiFocusTopic').innerText = `المَوْضُوعُ الرَّئِيسِيُّ: ${sProfile.focus}`;
+            updateUIPanels();
+        }
+
+        function drawGiantScenicTree(x, y, baseWidth, height, level) {
+            ctx.save();
+            
+            const time = Date.now() * 0.0012;
+            const sway = Math.sin(time + x * 0.05) * 0.055; 
+            
+            ctx.translate(x, y);
+            ctx.rotate(sway);
+            ctx.translate(-x, -y);
+
+            // DRAW ADVANCED THICK TWISTED TRUNKS
+            if (level === 1) {
+                ctx.fillStyle = "#78350f"; 
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.5, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.25, y - height * 0.3, x - baseWidth * 0.3, y - height * 0.55);
+                ctx.quadraticCurveTo(x - baseWidth * 0.1, y - height * 0.75, x - baseWidth * 0.05, y - height);
+                ctx.lineTo(x + baseWidth * 0.1, y - height);
+                ctx.quadraticCurveTo(x + baseWidth * 0.05, y - height * 0.75, x + baseWidth * 0.25, y - height * 0.5);
+                ctx.quadraticCurveTo(x + baseWidth * 0.15, y - height * 0.25, x + baseWidth * 0.5, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.strokeStyle = "#451a03";
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.1, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.05, y - height * 0.4, x - baseWidth * 0.15, y - height * 0.7);
+                ctx.stroke();
+
+                ctx.strokeStyle = "#a16207"; 
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(x + baseWidth * 0.15, y);
+                ctx.quadraticCurveTo(x + baseWidth * 0.12, y - height * 0.3, x + baseWidth * 0.02, y - height * 0.6);
+                ctx.stroke();
+
+                ctx.fillStyle = "#15803d"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.3, y - height, 48, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.3, y - height, 48, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 30, 58, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#16a34a"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.18, y - height - 8, 38, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.18, y - height - 8, 38, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 38, 48, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#4ade80"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.1, y - height - 16, 25, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.1, y - height - 16, 25, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 48, 32, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (level === 2) {
+                // --- POKOK RU (CASUARINA) FOR LEVEL 2 ---
+                ctx.fillStyle = "#451a03"; 
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.4, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.1, y - height * 0.4, x - baseWidth * 0.2, y - height * 0.7);
+                ctx.lineTo(x - baseWidth * 0.05, y - height);
+                ctx.lineTo(x + baseWidth * 0.05, y - height);
+                ctx.quadraticCurveTo(x + baseWidth * 0.1, y - height * 0.6, x + baseWidth * 0.15, y - height * 0.3);
+                ctx.lineTo(x + baseWidth * 0.4, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.strokeStyle = "#311102";
+                ctx.lineWidth = 3.5;
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.1, y - height * 0.4);
+                ctx.quadraticCurveTo(x - baseWidth * 0.5, y - height * 0.45, x - baseWidth * 0.6, y - height * 0.55);
+                ctx.moveTo(x + baseWidth * 0.1, y - height * 0.6);
+                ctx.quadraticCurveTo(x + baseWidth * 0.5, y - height * 0.62, x + baseWidth * 0.6, y - height * 0.72);
+                ctx.stroke();
+
+                ctx.fillStyle = "rgba(10, 54, 25, 0.82)"; 
+                ctx.beginPath();
+                ctx.ellipse(x - baseWidth * 0.5, y - height * 0.5, 18, 38, 0.1, 0, Math.PI * 2);
+                ctx.ellipse(x + baseWidth * 0.45, y - height * 0.3, 16, 32, -0.05, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "rgba(22, 101, 52, 0.88)"; 
+                ctx.beginPath();
+                ctx.ellipse(x + baseWidth * 0.5, y - height * 0.65, 15, 34, -0.08, 0, Math.PI * 2);
+                ctx.ellipse(x - baseWidth * 0.4, y - height * 0.82, 14, 30, 0.05, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "rgba(34, 197, 94, 0.9)"; 
+                ctx.beginPath();
+                ctx.ellipse(x, y - height, 15, 45, 0, 0, Math.PI * 2);
+                ctx.ellipse(x - baseWidth * 0.1, y - height * 0.92, 12, 35, 0.05, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (level === 3) {
+                // --- WET RAINFOREST TALL JUNGLE TREE WITH BUTTRESS ROOTS ---
+                ctx.fillStyle = "#1e1b18"; 
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.65, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.3, y - height * 0.25, x - baseWidth * 0.25, y - height * 0.5);
+                ctx.lineTo(x - baseWidth * 0.1, y - height);
+                ctx.lineTo(x + baseWidth * 0.1, y - height);
+                ctx.quadraticCurveTo(x + baseWidth * 0.2, y - height * 0.5, x + baseWidth * 0.35, y - height * 0.25);
+                ctx.lineTo(x + baseWidth * 0.7, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = "#0f1c12"; 
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.4, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.2, y - height * 0.2, x - baseWidth * 0.23, y - height * 0.45);
+                ctx.lineTo(x - baseWidth * 0.15, y - height * 0.45);
+                ctx.quadraticCurveTo(x - baseWidth * 0.1, y - height * 0.2, x - baseWidth * 0.2, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = "#062e1e"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.25, y - height, 44, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.25, y - height, 44, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 25, 52, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#044d31"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.15, y - height - 5, 34, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.15, y - height - 5, 34, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 32, 42, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (level === 4) {
+                // --- LEVEL 4: ADVANCED WINTER PINECRAFT (TRIANGULAR CONIFER TREES) ---
+                ctx.fillStyle = "#1e1b4b"; 
+                ctx.fillRect(x - baseWidth * 0.2, y - height * 0.35, baseWidth * 0.4, height * 0.35);
+                
+                const colorsL4 = ["#166534", "#15803d", "#14532d"]; 
+                const highlightBlue = ["#38bdf8", "#7dd3fc", "#0ea5e9"]; 
+
+                // Layer 1
+                ctx.fillStyle = colorsL4[0];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 1.0, y - height * 0.3);
+                ctx.lineTo(x + baseWidth * 1.0, y - height * 0.3);
+                ctx.lineTo(x, y - height * 0.65);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = highlightBlue[0];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 1.0, y - height * 0.3);
+                ctx.lineTo(x - baseWidth * 0.6, y - height * 0.3);
+                ctx.lineTo(x, y - height * 0.65);
+                ctx.closePath();
+                ctx.fill();
+
+                // Layer 2
+                ctx.fillStyle = colorsL4[1];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.8, y - height * 0.55);
+                ctx.lineTo(x + baseWidth * 0.8, y - height * 0.55);
+                ctx.lineTo(x, y - height * 0.85);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = highlightBlue[1];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.8, y - height * 0.55);
+                ctx.lineTo(x - baseWidth * 0.5, y - height * 0.55);
+                ctx.lineTo(x, y - height * 0.85);
+                ctx.closePath();
+                ctx.fill();
+
+                // Layer 3
+                ctx.fillStyle = colorsL4[2];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.6, y - height * 0.75);
+                ctx.lineTo(x + baseWidth * 0.6, y - height * 0.75);
+                ctx.lineTo(x, y - height * 1.05);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = highlightBlue[2];
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.6, y - height * 0.75);
+                ctx.lineTo(x - baseWidth * 0.3, y - height * 0.75);
+                ctx.lineTo(x, y - height * 1.05);
+                ctx.closePath();
+                ctx.fill();
+
+                // SNOW CAPS
+                ctx.fillStyle = "#ffffff";
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.25, y - height * 0.55);
+                ctx.lineTo(x + baseWidth * 0.25, y - height * 0.55);
+                ctx.lineTo(x, y - height * 0.65);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.2, y - height * 0.78);
+                ctx.lineTo(x + baseWidth * 0.2, y - height * 0.78);
+                ctx.lineTo(x, y - height * 0.85);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.18, y - height * 0.98);
+                ctx.lineTo(x + baseWidth * 0.18, y - height * 0.98);
+                ctx.lineTo(x, y - height * 1.05);
+                ctx.closePath();
+                ctx.fill();
+            } else if (level === 5) {
+                // --- LEVEL 5: ORGANIC SAKURA TREE WITH LIGHT PINK BLOSSOMS & BROWN TRUNK (BATANG KOKO) ---
+                ctx.fillStyle = "#5c2d12"; 
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.25, y);
+                ctx.quadraticCurveTo(x - baseWidth * 0.4, y - height * 0.15, x - baseWidth * 0.15, y - height * 0.3);
+                ctx.lineTo(x - baseWidth * 0.08, y - height * 0.5);
+                ctx.quadraticCurveTo(x - baseWidth * 0.4, y - height * 0.65, x - baseWidth * 0.5, y - height * 0.65);
+                ctx.lineTo(x - baseWidth * 0.45, y - height * 0.7);
+                ctx.quadraticCurveTo(x - baseWidth * 0.2, y - height * 0.7, x - baseWidth * 0.05, y - height * 0.58);
+                ctx.lineTo(x + baseWidth * 0.05, y - height * 0.65);
+                ctx.quadraticCurveTo(x + baseWidth * 0.35, y - height * 0.75, x + baseWidth * 0.55, y - height * 0.8);
+                ctx.lineTo(x + baseWidth * 0.5, y - height * 0.85);
+                ctx.quadraticCurveTo(x + baseWidth * 0.2, y - height * 0.8, x + baseWidth * 0.05, y - height * 0.7);
+                ctx.lineTo(x, y - height * 0.8);
+                ctx.lineTo(x + baseWidth * 0.08, y - height * 0.8);
+                ctx.lineTo(x + baseWidth * 0.1, y - height * 0.5);
+                ctx.quadraticCurveTo(x + baseWidth * 0.4, y - height * 0.15, x + baseWidth * 0.25, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.strokeStyle = "#5c2d12";
+                ctx.lineWidth = 4;
+                ctx.lineCap = "round";
+                ctx.beginPath();
+                ctx.moveTo(x - baseWidth * 0.3, y - height * 0.65);
+                ctx.quadraticCurveTo(x - baseWidth * 0.45, y - height * 0.8, x - baseWidth * 0.55, y - height * 0.82);
+                ctx.moveTo(x + baseWidth * 0.15, y - height * 0.72);
+                ctx.quadraticCurveTo(x + baseWidth * 0.3, y - height * 0.9, x + baseWidth * 0.4, y - height * 0.95);
+                ctx.stroke();
+
+                ctx.fillStyle = "#ffccd5"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.48, y - height * 0.7, 24, 0, Math.PI * 2);
+                ctx.arc(x - baseWidth * 0.38, y - height * 0.78, 22, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.48, y - height * 0.82, 24, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.35, y - height * 0.86, 26, 0, Math.PI * 2);
+                ctx.arc(x - baseWidth * 0.15, y - height * 0.85, 34, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.15, y - height * 0.88, 36, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 12, 38, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#ffb3c1"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.42, y - height * 0.72, 16, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.42, y - height * 0.84, 18, 0, Math.PI * 2);
+                ctx.arc(x - baseWidth * 0.1, y - height * 0.86, 25, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.1, y - height * 0.88, 24, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 8, 26, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#fff0f3"; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.12, y - height * 0.9, 14, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.12, y - height * 0.92, 15, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 18, 16, 0, Math.PI * 2);
+                ctx.fill();
+
+                const rate1 = Math.sin(Date.now() * 0.006 + x) * 0.5 + 0.5;
+                const rate2 = Math.cos(Date.now() * 0.004 + x) * 0.5 + 0.5;
+
+                ctx.fillStyle = `rgba(255, 230, 100, ${rate1})`; 
+                ctx.beginPath();
+                ctx.arc(x - baseWidth * 0.22, y - height * 0.8, 3.5, 0, Math.PI * 2);
+                ctx.arc(x + baseWidth * 0.28, y - height * 0.85, 3.5, 0, Math.PI * 2);
+                ctx.arc(x, y - height - 5, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(135, 206, 250, ${rate2})`; 
+                ctx.beginPath();
+                ctx.arc(x + baseWidth * 0.38, y - height * 0.78, 3.5, 0, Math.PI * 2);
+                ctx.arc(x - baseWidth * 0.32, y - height * 0.85, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        class Obstacle {
+            constructor(x, groundY, speed, type) {
+                this.x = x;
+                this.groundY = groundY;
+                this.speed = speed;
+                this.type = type; 
+                this.width = 45;
+                this.height = 40;
+                
+                if (type === 'tree_trunk') {
+                    this.width = 40;
+                    this.height = 65;
+                } else if (type === 'flying_birds') {
+                    this.width = 40;
+                    this.height = 35;
+                    this.y = groundY - 85; 
+                } else {
+                    this.y = groundY - this.height;
+                }
+            }
+
+            update(currentSpeed) {
+                this.x -= currentSpeed;
+            }
+
+            draw() {
+                ctx.save();
+                if (this.type === 'stone') {
+                    ctx.fillStyle = '#64748b';
+                    drawSafeRoundRect(ctx, this.x, this.y, this.width, this.height, [10, 10, 0, 0]);
+                    ctx.fillStyle = '#94a3b8';
+                    ctx.beginPath(); ctx.arc(this.x + 12, this.y + 12, 6, 0, Math.PI*2); ctx.fill();
+                } else if (this.type === 'tree_trunk') {
+                    ctx.fillStyle = '#78350f'; 
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                    ctx.fillStyle = '#451a03';
+                    ctx.fillRect(this.x + 12, this.y, 6, this.height);
+                    ctx.fillRect(this.x + 28, this.y, 6, this.height);
+                    ctx.fillStyle = '#15803d';
+                    ctx.beginPath(); ctx.ellipse(this.x + this.width/2, this.y, 16, 8, 0, 0, Math.PI*2); ctx.fill();
+                } else if (this.type === 'flying_birds') {
+                    ctx.fillStyle = '#ff4500'; 
+                    const wingOffset = Math.sin(Date.now() / 80) * 8;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y + 10 + wingOffset);
+                    ctx.lineTo(this.x + this.width/2, this.y);
+                    ctx.lineTo(this.x + this.width, this.y + 10 + wingOffset);
+                    ctx.lineTo(this.x + this.width/2, this.y + 14);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffd700'; 
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y + 10 + wingOffset, 4, 0, Math.PI * 2);
+                    ctx.arc(this.x + this.width, this.y + 10 + wingOffset, 4, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffae00';
+                    ctx.beginPath();
+                    ctx.moveTo(this.x + this.width/2 - 2, this.y + 10);
+                    ctx.lineTo(this.x + this.width/2 + 6, this.y + 10);
+                    ctx.lineTo(this.x + this.width/2, this.y + 14);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            getCollisionRect() {
+                return {
+                    x: this.x,
+                    y: this.y,
+                    width: this.width,
+                    height: this.height
+                };
+            }
+        }
+
+        class Collectible {
+            constructor(x, y, type) {
+                this.x = x;
+                this.y = y;
+                this.type = type; 
+                this.width = 24;
+                this.height = 24;
+                this.pulseFactor = Math.random() * 100;
+                this.active = true;
+            }
+
+            update(currentSpeed) {
+                this.x -= currentSpeed;
+                this.pulseFactor += 0.1;
+            }
+
+            draw() {
+                if (!this.active) return;
+                ctx.save();
+                
+                const hoverOffset = Math.sin(this.pulseFactor) * 5;
+                ctx.translate(this.x + this.width/2, this.y + this.height/2 + hoverOffset);
+
+                if (this.type === 'star') {
+                    ctx.fillStyle = '#fbbf24'; 
+                    ctx.shadowColor = '#f59e0b';
+                    ctx.shadowBlur = 10;
+                    ctx.beginPath();
+                    for (let i = 0; i < 5; i++) {
+                        ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * 12,
+                                   -Math.sin((18 + i * 72) * Math.PI / 180) * 12);
+                        ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * 5,
+                                   -Math.sin((54 + i * 72) * Math.PI / 180) * 5);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    ctx.fillStyle = '#0ea5e9'; 
+                    ctx.fillRect(-10, -12, 20, 24);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(6, -10, 4, 20);
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.fillRect(-8, -12, 4, 24);
+                    ctx.fillStyle = '#ef4444';
+                    ctx.fillRect(0, 10, 2, 8);
+                }
+
+                ctx.restore();
+            }
+
+            getCollisionRect() {
+                return {
+                    x: this.x,
+                    y: this.y,
+                    width: this.width,
+                    height: this.height
+                };
+            }
+        }
+
+        let monkey;
+        let groundY;
+        let obstacles = [];
+        let collectibles = [];
+        let spawnTimer = 0;
+        let speed = CONFIG.initialSpeed;
+        let distanceProgress = 0;
+        let requestAnimId;
+        let gameTimeStartStamp = null;
+
+        function initEnvironment() {
+            resizeCanvas();
+
+            monkey = new MonkeyPlayer();
+            monkey.reset(groundY);
+
+            buildScenicParallaxBackground();
+
+            obstacles = [];
+            collectibles = [];
+            explosionRings = [];
+            debrisParticles = [];
+            spawnTimer = 0;
+            speed = CONFIG.initialSpeed + (GameState.currentLevel - 1) * CONFIG.speedIncrement;
+            distanceProgress = 0;
+            
+            const sProfile = Seasons[GameState.currentLevel];
+            document.getElementById('uiLevelSeason').innerText = `المستوى ${GameState.currentLevel}: ${sProfile.name}`;
+            document.getElementById('uiFocusTopic').innerText = `المَوْضُوعُ الرَّئِيسِيُّ: ${sProfile.focus}`;
+            updateUIPanels();
+        }
+
+        function isRectColliding(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        // ----------------- GAME LOOP & ENVIRONMENT EFFECTS -----------------
+        function gameLoop() {
+            if (!GameState.isPlaying) return;
+
+            const sProfile = Seasons[GameState.currentLevel];
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            skyGrad.addColorStop(0, sProfile.skyGrad[0]);
+            skyGrad.addColorStop(0.5, sProfile.skyGrad[1]);
+            skyGrad.addColorStop(1, sProfile.skyGrad[2]);
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Trigger Random Lightning Bolts on Level 3
+            if (GameState.currentLevel === 3) {
+                if (!lightningFlashActive && Math.random() < 0.004) {
+                    triggerLightningFlash();
+                }
+                if (lightningFlashActive) {
+                    lightningFlashAlpha -= 0.04;
+                    if (lightningFlashAlpha <= 0) {
+                        lightningFlashActive = false;
+                        lightningBoltsPath = [];
+                    }
+                }
+            }
+
+            // Draw clouds that float gently across the sky
+            livingClouds.forEach(cloud => {
+                cloud.update();
+                cloud.draw();
+            });
+
+            scenicParallaxLayers.forEach(layer => {
+                layer.update(speed);
+                layer.draw();
+            });
+
+            // Draw butterflies or weather effects
+            if (GameState.currentLevel === 5) {
+                livingButterflies.forEach(b => {
+                    b.update();
+                    b.draw();
+                });
+            }
+
+            // Draw Dynamic Weather/Atmospheric and Lightning elements
+            drawAtmosphereEffects(sProfile);
+
+            // Draw splashes on rain level
+            if (GameState.currentLevel === 3) {
+                if (Math.random() > 0.4) {
+                    livingRainSplashes.push(new RainSplash(Math.random() * canvas.width, groundY + Math.random() * 30));
+                }
+                for (let i = livingRainSplashes.length - 1; i >= 0; i--) {
+                    livingRainSplashes[i].update();
+                    livingRainSplashes[i].draw();
+                    if (livingRainSplashes[i].life <= 0) {
+                        livingRainSplashes.splice(i, 1);
+                    }
+                }
+            }
+
+            ctx.fillStyle = sProfile.groundColor;
+            ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+            ctx.fillStyle = 'rgba(255,255,255,0.15)';
+            ctx.fillRect(0, groundY, canvas.width, 10);
+
+            // Draw puddles on rainy level with dynamic ripple waves
+            if (GameState.currentLevel === 3) {
+                ctx.fillStyle = "rgba(14, 165, 233, 0.4)";
+                ctx.beginPath();
+                ctx.ellipse(canvas.width * 0.2, groundY + 25, 45, 8, 0, 0, Math.PI * 2);
+                ctx.ellipse(canvas.width * 0.6, groundY + 40, 60, 12, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Update & Draw Special Power Shockwaves
+            for (let i = explosionRings.length - 1; i >= 0; i--) {
+                let ring = explosionRings[i];
+                ring.radius += 18; 
+                ring.alpha -= 0.035;
+                ctx.save();
+                ctx.strokeStyle = `rgba(168, 85, 247, ${ring.alpha})`; // Purple burst wave
+                ctx.lineWidth = 6;
+                ctx.shadowColor = '#a855f7';
+                ctx.shadowBlur = 20;
+                ctx.beginPath();
+                ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
+
+                if (ring.alpha <= 0) {
+                    explosionRings.splice(i, 1);
+                }
+            }
+
+            // Update & Draw Obstacle Explosion Debris particles
+            for (let i = debrisParticles.length - 1; i >= 0; i--) {
+                let p = debrisParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.25; // gravity pull on broken parts
+                p.life--;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+                ctx.fill();
+                if (p.life <= 0) {
+                    debrisParticles.splice(i, 1);
+                }
+            }
+
+            if (monkey) {
+                monkey.update();
+                monkey.draw();
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                const obs = obstacles[i];
+                obs.update(speed);
+                obs.draw();
+
+                if (monkey && isRectColliding(monkey.getCollisionRect(), obs.getCollisionRect())) {
+                    obstacles.splice(i, 1);
+                    onPlayerHitObstacle();
+                    continue;
+                }
+
+                if (obs.x + obs.width < 0) {
+                    obstacles.splice(i, 1);
+                }
+            }
+
+            for (let i = collectibles.length - 1; i >= 0; i--) {
+                const col = collectibles[i];
+                col.update(speed);
+                col.draw();
+
+                if (monkey && col.active && isRectColliding(monkey.getCollisionRect(), col.getCollisionRect())) {
+                    col.active = false;
+                    collectibles.splice(i, 1);
+                    onPlayerCollectItem(col.type);
+                    continue;
+                }
+
+                if (col.x + col.width < 0) {
+                    collectibles.splice(i, 1);
+                }
+            }
+
+            spawnTimer++;
+            if (spawnTimer >= 75 + Math.random() * 50) {
+                spawnTimer = 0;
+                spawnObstaclesAndCollectibles();
+            }
+
+            distanceProgress += speed;
+            const progressPercent = Math.min((distanceProgress / CONFIG.levelDuration) * 100, 100);
+            document.getElementById('uiProgressBar').style.width = `${progressPercent}%`;
+
+            if (distanceProgress >= CONFIG.levelDuration) {
+                triggerQuizTransition();
+                return; 
+            }
+
+            requestAnimId = requestAnimationFrame(gameLoop);
+        }
+
+        function drawAtmosphereEffects(sProfile) {
+            ctx.fillStyle = sProfile.ambientColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            if (GameState.currentLevel === 1) {
+                // Falling soft leaves in bright green atmosphere
+                ctx.fillStyle = "rgba(74, 222, 128, 0.4)";
+                for (let i = 0; i < 4; i++) {
+                    const leafX = (Date.now() * 0.05 + i * 250) % (canvas.width + 100) - 50;
+                    const leafY = (Date.now() * 0.03 + i * 180) % (canvas.height);
+                    ctx.beginPath();
+                    ctx.ellipse(leafX, leafY, 8, 4, Math.PI / 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            } else if (GameState.currentLevel === 2) {
+                // Sunset Light Rays
+                const rayGrad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                rayGrad.addColorStop(0, "rgba(253, 186, 116, 0.18)"); 
+                rayGrad.addColorStop(0.5, "rgba(249, 115, 22, 0.08)"); 
+                rayGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+                ctx.fillStyle = rayGrad;
+
+                for (let r = 0; r < 3; r++) {
+                    const startX = r * 160 - 50;
+                    ctx.beginPath();
+                    ctx.moveTo(startX, 0);
+                    ctx.lineTo(startX + 120, 0);
+                    ctx.lineTo(startX + 420, canvas.height);
+                    ctx.lineTo(startX + 220, canvas.height);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
+                // Falling MAPLE LEAVES (🍁)
+                for (let i = 0; i < 8; i++) {
+                    const leafX = (Date.now() * 0.04 + i * 180) % (canvas.width + 120) - 60;
+                    const leafY = (Date.now() * 0.02 + i * 130) % (canvas.height + 40) - 20;
+                    const angle = (Date.now() * 0.0015 + i * 45) % (Math.PI * 2);
+                    const leafColor = (i % 2 === 0) ? "#f97316" : "#ea580c"; 
+                    drawMapleLeaf(ctx, leafX, leafY, 13, angle, leafColor);
+                }
+
+                // Ambient warm gold glowing fireflies floating upwards
+                for (let i = 0; i < 6; i++) {
+                    const fX = (Math.sin(Date.now() * 0.001 + i) * 30 + i * 180 + Date.now() * 0.02) % (canvas.width + 100) - 50;
+                    const fY = (canvas.height - 150) - ((Date.now() * 0.04 + i * 90) % 300);
+                    const size = 1.5 + Math.abs(Math.sin(Date.now() * 0.002 + i)) * 2;
+                    ctx.fillStyle = `rgba(253, 224, 71, ${0.4 + Math.abs(Math.sin(Date.now() * 0.001 + i)) * 0.5})`;
+                    ctx.beginPath();
+                    ctx.arc(fX, fY, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            } else if (GameState.currentLevel === 3) {
+                if (lightningFlashActive) {
+                    ctx.fillStyle = `rgba(224, 242, 254, ${lightningFlashAlpha * 0.25})`;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.save();
+                    ctx.strokeStyle = `rgba(224, 242, 254, ${lightningFlashAlpha})`;
+                    ctx.lineWidth = 3.5;
+                    ctx.shadowColor = '#bae6fd';
+                    ctx.shadowBlur = 18;
+                    
+                    lightningBoltsPath.forEach(bolt => {
+                        ctx.beginPath();
+                        if (bolt.length > 0) {
+                            ctx.moveTo(bolt[0].x, bolt[0].y);
+                            for (let p = 1; p < bolt.length; p++) {
+                                ctx.lineTo(bolt[p].x, bolt[p].y);
+                            }
+                        }
+                        ctx.stroke();
+                    });
+                    ctx.restore();
+                }
+
+                ctx.strokeStyle = 'rgba(186, 230, 253, 0.45)';
+                ctx.lineWidth = 1.5;
+                for (let i = 0; i < 15; i++) {
+                    const rx = Math.random() * canvas.width;
+                    const ry = Math.random() * canvas.height;
+                    ctx.beginPath();
+                    ctx.moveTo(rx, ry);
+                    ctx.lineTo(rx - 7, ry + 25);
+                    ctx.stroke();
+                }
+            } else if (GameState.currentLevel === 4) {
+                ctx.fillStyle = '#ffffff';
+                for (let i = 0; i < 15; i++) {
+                    const sx = (Math.sin(Date.now() * 0.001 + i) * 20 + i * 120 + Date.now() * 0.01) % (canvas.width + 100) - 50;
+                    const sy = (Date.now() * 0.03 + i * 140) % (canvas.height);
+                    const size = 2 + Math.abs(Math.sin(Date.now() * 0.002 + i)) * 3;
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            } else if (GameState.currentLevel === 5) {
+                ctx.fillStyle = 'rgba(244, 114, 182, 0.5)';
+                for (let i = 0; i < 5; i++) {
+                    const px = (Math.sin(Date.now() * 0.001 + i) * 30 + i * 200 - Date.now() * 0.02) % (canvas.width + 100) - 50;
+                    const py = (Date.now() * 0.035 + i * 110) % (canvas.height);
+                    ctx.beginPath();
+                    ctx.ellipse(px, py, 6, 4, Math.PI / 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function spawnObstaclesAndCollectibles() {
+            const obstacleTypes = ['stone', 'tree_trunk', 'flying_birds'];
+            let chosenType = 'stone';
+            if (GameState.currentLevel >= 2) {
+                chosenType = obstacleTypes[Math.floor(Math.random() * 2)]; 
+            }
+            if (GameState.currentLevel >= 3 && Math.random() > 0.6) {
+                chosenType = 'flying_birds'; 
+            }
+
+            obstacles.push(new Obstacle(canvas.width + 100, groundY, speed, chosenType));
+
+            const itemType = Math.random() > 0.7 ? 'book' : 'star';
+            const cy = groundY - 45 - Math.random() * 80;
+            
+            collectibles.push(new Collectible(canvas.width + 150, cy, itemType));
+            if (Math.random() > 0.5) {
+                collectibles.push(new Collectible(canvas.width + 200, cy - 20, itemType));
+                collectibles.push(new Collectible(canvas.width + 250, cy, itemType));
+            }
+        }
+
+        function onPlayerCollectItem(type) {
+            GameState.score += 1;
+            AudioSys.playCollect();
+            updateUIPanels();
+        }
+
+        function onPlayerHitObstacle() {
+            GameState.score = Math.max(0, GameState.score - 2);
+            GameState.lives -= 1;
+            AudioSys.playHurt();
+
+            const canvasEl = document.getElementById('gamePlayScreen');
+            canvasEl.classList.add('shake-ui');
+            setTimeout(() => canvasEl.classList.remove('shake-ui'), 400);
+
+            updateUIPanels();
+
+            if (GameState.lives <= 0) {
+                endGameSession(false);
+            }
+        }
+
+        function updateUIPanels() {
+            document.getElementById('uiScore').innerText = GameState.score;
+            
+            const heartsContainer = document.getElementById('uiHearts');
+            heartsContainer.innerHTML = '';
+            for (let i = 0; i < 6; i++) { 
+                const icon = document.createElement('i');
+                if (i < GameState.lives) {
+                    icon.className = 'fa-solid fa-heart text-rose-500 text-sm drop-shadow';
+                } else {
+                    icon.className = 'fa-regular fa-heart text-slate-500 text-sm';
+                }
+                heartsContainer.appendChild(icon);
+            }
+
+            // Update Power Button UI Text based on remaining charges in Arabic numerals
+            const arabicPowerNumbers = ['٠', '١', '٢', '٣'];
+            const chargeVal = arabicPowerNumbers[GameState.powerCharges] || '٠';
+            document.getElementById('uiPowerText').innerText = `الْقُوَّةُ (${chargeVal})`;
+        }
+
+        // ----------------- EDUCATIONAL QUIZ SYSTEM -----------------
+        let activeQuizQuestion = null;
+
+        function triggerQuizTransition() {
+            GameState.isPlaying = false;
+            cancelAnimationFrame(requestAnimId);
+
+            AudioSys.playSuccess();
+            AudioSys.stopMusic();
+
+            const sProfile = Seasons[GameState.currentLevel];
+            
+            document.getElementById('quizScreen').classList.remove('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            
+            let qData = QuizQuestions[GameState.currentLevel];
+            activeQuizQuestion = qData;
+
+            document.getElementById('quizLevelBadge').innerText = `اكتمل المستوى ${GameState.currentLevel}!`;
+            document.getElementById('quizTopicName').innerText = sProfile.focus;
+            document.getElementById('quizQuestionMalay').innerText = qData.malayPrompt;
+            document.getElementById('quizQuestionArabic').innerText = qData.arabicText;
+
+            // Randomize answers dynamically
+            const randomizedAnswers = [...qData.answers].sort(() => Math.random() - 0.5);
+
+            const grid = document.getElementById('quizAnswersGrid');
+            grid.innerHTML = '';
+            
+            randomizedAnswers.forEach((ans, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full bg-slate-800/80 hover:bg-slate-700 hover:border-yellow-400 border-2 border-slate-700/60 py-3.5 px-4 rounded-xl text-right font-semibold text-xs md:text-sm text-indigo-100 flex items-center justify-between gap-3 transition transform active:scale-[0.98]";
+                
+                const labels = ['أ', 'ب', 'ج', 'د'];
+                btn.innerHTML = `
+                    <span>${ans.text}</span>
+                    <span class="bg-amber-500 text-slate-900 w-6 h-6 rounded-full flex items-center justify-center font-black text-xs shrink-0">${labels[idx]}</span>
+                `;
+                
+                btn.onclick = () => selectQuizAnswer(ans.correct, btn, randomizedAnswers);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(isCorrect, buttonEl, randomizedAnswersList) {
+            const btns = document.getElementById('quizAnswersGrid').querySelectorAll('button');
+            btns.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('quizFeedback');
+            const feedbackText = document.getElementById('quizFeedbackText');
+            feedback.classList.remove('hidden');
+
+            if (isCorrect) {
+                GameState.score += 10;
+                AudioSys.speakSohih(); 
+                feedbackText.className = "text-green-300 font-bold text-base";
+                feedbackText.innerHTML = `<i class="fa-solid fa-circle-check"></i> صَحِيْحٌ! +١٠ نِقَاطٍ`;
+                buttonEl.classList.remove('bg-slate-800/80', 'border-slate-700/60');
+                buttonEl.classList.add('bg-green-600', 'border-white', 'text-white');
+            } else {
+                GameState.score = Math.max(0, GameState.score - 5);
+                GameState.wrongAnswersCount++;
+                GameState.perfectBonusCount = false; 
+                AudioSys.speakKhoto(); 
+                feedbackText.className = "text-rose-400 font-bold text-base";
+                feedbackText.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> خَاطِئٌ! -٥ نِقَاطٍ`;
+                buttonEl.classList.remove('bg-slate-800/80', 'border-slate-700/60');
+                buttonEl.classList.add('bg-rose-600', 'border-white', 'text-white');
+
+                const correctIdx = randomizedAnswersList.findIndex(ans => ans.correct === true);
+                if (btns[correctIdx]) {
+                    btns[correctIdx].classList.remove('bg-slate-800/80', 'border-slate-700/60');
+                    btns[correctIdx].classList.add('bg-green-600/80', 'border-green-400');
+                }
+            }
+
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+                document.getElementById('quizScreen').classList.add('hidden');
+                proceedToNextLevel();
+            }, 2500); 
+        }
+
+        function proceedToNextLevel() {
+            if (GameState.currentLevel < 5) {
+                GameState.currentLevel += 1;
+                initEnvironment();
+                goToScreen('gamePlayScreen');
+                
+                GameState.isPlaying = true;
+                AudioSys.startMusic();
+                gameLoop();
+            } else {
+                endGameSession(true);
+            }
+        }
+
+        // ----------------- GAME SESSION ACTIONS -----------------
+        function startGame() {
+            GameState.score = 0;
+            GameState.lives = 6; 
+            GameState.powerCharges = 3; // Reset charges to 3 total per game
+            GameState.currentLevel = 1;
+            GameState.isPlaying = true;
+            GameState.wrongAnswersCount = 0;
+            GameState.perfectBonusCount = true;
+
+            GameState.timeElapsed = 0;
+            gameTimeStartStamp = Date.now();
+            if (GameState.gameTimerInterval) clearInterval(GameState.gameTimerInterval);
+            GameState.gameTimerInterval = setInterval(() => {
+                if (GameState.isPlaying) {
+                    GameState.timeElapsed++;
+                }
+            }, 1000);
+
+            goToScreen('gamePlayScreen');
+            initEnvironment();
+            AudioSys.startMusic();
+            gameLoop();
+        }
+
+        function restartGame() {
+            document.getElementById('gameOverScreen').classList.add('hidden');
+            startGame();
+        }
+
+        function endGameSession(isVictory) {
+            GameState.isPlaying = false;
+            cancelAnimationFrame(requestAnimId);
+            if (GameState.gameTimerInterval) clearInterval(GameState.gameTimerInterval);
+            AudioSys.stopMusic();
+
+            const finalScreen = document.getElementById('gameOverScreen');
+            const finalTitle = document.getElementById('finalTitle');
+            const finalSubtitle = document.getElementById('finalSubtitle');
+            const finalIcon = document.getElementById('finalBadgeIcon');
+
+            if (isVictory) {
+                AudioSys.playSuccess();
+                finalTitle.innerText = "تَهَانِينَا وَأَلْفُ مَبْرُوكٍ!";
+                finalSubtitle.innerHTML = `لَقَدْ نَجَحْتَ فِي إِتْقَانِ قَوَاعِدِ اللُّغَةِ العَرَبِيَّةِ لِـ <strong>إِنَّ وَأَخَوَاتِهَا</strong> بِجَدَارَةٍ!`;
+                finalIcon.className = "fa-solid fa-trophy text-amber-800 text-4xl animate-bounce";
+                
+                if (GameState.perfectBonusCount) {
+                    GameState.score += 20; 
+                }
+            } else {
+                AudioSys.playFail();
+                finalTitle.innerText = "انْتَهَتِ اللُّعْبَةُ!";
+                finalSubtitle.innerHTML = `انْتَهَتِ الجَوْلَةُ بِسَبَبِ نَفَادِ المَحَاوَلَاتِ. حَاوِلْ مُجَدَّدًا لإِتْقَانِ قَوَاعِدِ <strong>إِنَّ وَأَخَوَاتِهَا</strong>!`;
+                finalIcon.className = "fa-solid fa-heart-crack text-rose-800 text-4xl animate-pulse";
+            }
+
+            document.getElementById('finalScoreText').innerText = GameState.score;
+            
+            const minutes = Math.floor(GameState.timeElapsed / 60);
+            const seconds = GameState.timeElapsed % 60;
+            const timeStr = minutes > 0 ? `${minutes}د ${seconds}ث` : `${seconds}ث`;
+            document.getElementById('finalTimeText').innerText = timeStr;
+
+            const now = new Date();
+            const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth()+1).padStart(2, '0')}/${now.getFullYear()}`;
+            
+            HighScores.push({
+                name: GameState.player.name,
+                score: GameState.score,
+                date: dateStr
+            });
+
+            HighScores.sort((a,b) => b.score - a.score);
+            localStorage.setItem('haya_ranking', JSON.stringify(HighScores));
+
+            const rankList = document.getElementById('finalLocalRankingContainer');
+            rankList.innerHTML = '';
+            
+            const previewRanks = HighScores.slice(0, 3);
+            previewRanks.forEach((item, idx) => {
+                let medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : '🥉';
+                const el = document.createElement('div');
+                el.className = "flex justify-between items-center text-xs border-b border-white/5 py-1 text-slate-200";
+                
+                const isCurrent = (item.name === GameState.player.name && item.score === GameState.score);
+                if (isCurrent) {
+                    el.className += " font-bold text-yellow-300 bg-white/5 px-2 rounded-md";
+                }
+
+                el.innerHTML = `
+                    <span>${medal} ${item.name}</span>
+                    <span class="font-bold">${item.score} نُقْطَةً</span>
+                `;
+                rankList.appendChild(el);
+            });
+
+            goToScreen('gameOverScreen');
+        }
+
+        // Keyboard Controls Binding
+        window.addEventListener('keydown', (e) => {
+            if (!GameState.isPlaying) return;
+
+            if (e.key === 'ArrowUp' || e.key === ' ' || e.key === 'w') {
+                monkey.jump();
+            } else if (e.key === 'ArrowDown' || e.key === 's') {
+                monkey.slide();
+            } else if (e.key === 'Shift' || e.key === 'p' || e.key === 'P') {
+                activateSpecialPower();
+            }
+        });
+
+        const jumpBtn = document.getElementById('ctrlJumpBtn');
+        const slideBtn = document.getElementById('ctrlSlideBtn');
+        const powerBtn = document.getElementById('ctrlPowerBtn');
+
+        ['touchstart', 'mousedown'].forEach(evt => {
+            jumpBtn.addEventListener(evt, (e) => {
+                e.preventDefault();
+                if (GameState.isPlaying && monkey) monkey.jump();
+            }, { passive: false });
+
+            slideBtn.addEventListener(evt, (e) => {
+                e.preventDefault();
+                if (GameState.isPlaying && monkey) monkey.slide();
+            }, { passive: false });
+
+            powerBtn.addEventListener(evt, (e) => {
+                e.preventDefault();
+                activateSpecialPower();
+            }, { passive: false });
+        });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        window.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if (!GameState.isPlaying || !monkey) return;
+            
+            const diffX = e.changedTouches[0].screenX - touchStartX;
+            const diffY = e.changedTouches[0].screenY - touchStartY;
+
+            if (Math.abs(diffY) > 30) {
+                if (diffY < 0) {
+                    monkey.jump();
+                } else {
+                    monkey.slide();
+                }
+            }
+        }, { passive: true });
+
+        // ----------------- APP START INITIALIZATION -----------------
+        window.onload = function () {
+            createScenicParticles();
+            goToScreen('mainMenu');
+        }
+    </script>
+</body>
+</html>
